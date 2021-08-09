@@ -1,0 +1,11 @@
+within RoofKIT.Components.Media.PCM.table_h;
+package Test_Tabelle
+  extends PartialPCMMaterialTable(
+  final materialName="TestTabelle",
+  final tableName="table",
+  final fileName="/net/home1/hneumann/PCM_Zentral/Simulation/test_material.txt",
+  final density=1333,
+  final lambda_ver=8,
+  final lambda_hor=25,
+  final smoothness=Modelica.Blocks.Types.Smoothness.LinearSegments);
+end Test_Tabelle;
