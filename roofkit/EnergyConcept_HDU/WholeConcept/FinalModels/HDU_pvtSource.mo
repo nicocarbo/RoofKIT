@@ -301,7 +301,7 @@ connect(hysteresis3.y, booleanToReal2.u) annotation(
   connect(booleanToReal2.y, add3.u1) annotation(
     Line(points = {{-157.5, -95}, {-148, -95}, {-148, -80}, {-137, -80}}, color = {0, 0, 127}));
   connect(pulse.y, pump_TWW.m_flow_in) annotation(
-    Line(points = {{-155.5, 79}, {-146, 79}, {-146, 86}, {-90, 86}, {-90, 70}}, color = {0, 0, 127}));
+    Line(points = {{-23.5, 87}, {-146, 87}, {-146, 86}, {-90, 86}, {-90, 70}}, color = {0, 0, 127}));
   connect(val10.port_a, Pufferspeicher.port_a2) annotation(
     Line(points = {{90, 0}, {94, 0}, {94, 86}, {-20, 86}, {-20, 76}}, color = {0, 127, 255}));
   connect(bou_loa.ports[1], pump_loa.port_a) annotation(
