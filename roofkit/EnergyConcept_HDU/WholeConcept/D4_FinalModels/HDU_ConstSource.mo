@@ -1,4 +1,4 @@
-within RoofKIT.EnergyConcept_HDU.WholeConcept.FinalModels;
+within RoofKIT.EnergyConcept_HDU.WholeConcept.D4_FinalModels;
 
 model HDU_ConstSource
 extends Modelica.Icons.Example;
