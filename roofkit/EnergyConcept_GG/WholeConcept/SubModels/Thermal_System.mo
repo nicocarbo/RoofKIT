@@ -88,7 +88,7 @@ model Thermal_System
   Buildings.Fluid.Movers.FlowControlled_m_flow pump_BW(redeclare package Medium = Medium_Water, energyDynamics = Modelica.Fluid.Types.Dynamics.SteadyState, m_flow_nominal = 0.3, nominalValuesDefineDefaultPressureCurve = true, use_inputFilter = false, y_start = 1) annotation(
     Placement(visible = true, transformation(origin = {16, -18}, extent = {{6, -4}, {-6, 4}}, rotation = 0)));
 
-  //  Exhaust Air 3rd floor
+//  Exhaust Air 3rd floor
   Buildings.Fluid.HeatExchangers.ConstantEffectiveness hex_up(redeclare package Medium1 = Medium_Brine, redeclare package Medium2 = Medium_Air, dp1_nominal = 500, dp2_nominal = 10, m1_flow_nominal = 5, m2_flow_nominal = 5, show_T = true) annotation(
     Placement(visible = true, transformation(origin = {-42, 28}, extent = {{9, -7}, {-9, 7}}, rotation = -90)));
   Buildings.Fluid.Movers.FlowControlled_m_flow vent_thrid(redeclare package Medium = Medium_Air, energyDynamics = Modelica.Fluid.Types.Dynamics.SteadyState, m_flow_nominal = 0.3, nominalValuesDefineDefaultPressureCurve = true, use_inputFilter = false, y_start = 1) annotation(
@@ -121,9 +121,6 @@ model Thermal_System
     Placement(visible = true, transformation(origin = {111, 64}, extent = {{5, 8}, {-5, -8}}, rotation = 90)));
     Buildings.Fluid.HeatPumps.EquationFitReversible BW_Heatpump(redeclare package Medium1 = Medium_Water, redeclare package Medium2 = Medium_Brine, T1_start = 293.15, T2_start = 283.15, energyDynamics = Modelica.Fluid.Types.Dynamics.FixedInitial, massDynamics = Modelica.Fluid.Types.Dynamics.FixedInitial, per = per_WW) annotation(
     Placement(visible = true, transformation(origin = {24, 7}, extent = {{-14, 11}, {14, -11}}, rotation = 0)));
- 
- 
- 
  //////////////////////////////////////////////////////
   //
   Modelica.Blocks.Sources.RealExpression realExpression(y = (FirstFloor.y[2] + SecondFloor.y[2] + ThirdFloor.y[2]) / 4200 / 10) annotation(
@@ -342,6 +339,7 @@ equation
  connect(test2.ports[1], pump_ST.port_a) annotation(
     Line(points = {{16, 84}, {8, 84}, {8, 94}}, color = {0, 127, 255}));
   annotation(
-    Diagram(graphics = {Rectangle(origin = {-42, -44}, fillColor = {170, 170, 127}, fillPattern = FillPattern.Solid, extent = {{-56, 18}, {56, -18}})}),
-    experiment(StartTime = 8.7264e+06, StopTime = 8.8128e+06, Tolerance = 1e-06, Interval = 3600));
+    Diagram(graphics = {Rectangle(origin = {-42, -44}, fillColor = {170, 170, 127}, fillPattern = FillPattern.Solid, extent = {{-56, 18}, {56, -18}})}, coordinateSystem(extent = {{-150, -150}, {150, 150}})),
+    experiment(StartTime = 8.7264e+06, StopTime = 8.8128e+06, Tolerance = 1e-06, Interval = 3600),
+ Icon(coordinateSystem(extent = {{-150, -150}, {150, 150}})));
 end Thermal_System;
