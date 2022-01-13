@@ -89,7 +89,7 @@ model HDU_PufferSourceOnly_noTime
   Buildings.Fluid.Actuators.Valves.TwoWayLinear val12(redeclare package Medium = Medium_loa, dpValve_nominal = 10, m_flow_nominal = mSou_flow_nominal, riseTime = 10) annotation(
     Placement(visible = true, transformation(origin = {-90, 48}, extent = {{4, 4}, {-4, -4}}, rotation = 0)));
   Modelica.Blocks.Logical.Hysteresis hysteresis4(uHigh = 53 + 273.15, uLow = 43 + 273.15) annotation(
-    Placement(visible = true, transformation(origin = {-181, 13}, extent = {{-5, -5}, {5, 5}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {-179, 13}, extent = {{-5, -5}, {5, 5}}, rotation = 0)));
   Modelica.Blocks.Math.BooleanToReal booleanToReal3 annotation(
     Placement(visible = true, transformation(origin = {-143, 13}, extent = {{-5, -5}, {5, 5}}, rotation = 0)));
   Modelica.Blocks.Math.Add add5(k1 = -1) annotation(
@@ -243,7 +243,7 @@ equation
   connect(const5.y, add5.u2) annotation(
     Line(points = {{-170, 32}, {-142, 32}, {-142, 28}, {-115, 28}}, color = {0, 0, 127}));
   connect(hysteresis4.y, not11.u) annotation(
-    Line(points = {{-175.5, 13}, {-169, 13}}, color = {255, 0, 255}));
+    Line(points = {{-173.5, 13}, {-169, 13}}, color = {255, 0, 255}));
   connect(not11.y, booleanToReal3.u) annotation(
     Line(points = {{-157.5, 13}, {-149, 13}}, color = {255, 0, 255}));
   connect(pulse1.y, val12.y) annotation(
@@ -391,7 +391,7 @@ equation
   connect(JAZ.u2, max1.y) annotation(
     Line(points = {{-6, -146}, {-11, -146}, {-11, -162}}, color = {0, 0, 127}));
   connect(TWW.T[4], hysteresis4.u) annotation(
-    Line(points = {{-66, 62}, {-72, 62}, {-72, 22}, {-196, 22}, {-196, 14}, {-186, 14}}, color = {0, 0, 127}));
+    Line(points = {{-66, 62}, {-72, 62}, {-72, 22}, {-196, 22}, {-196, 13}, {-185, 13}}, color = {0, 0, 127}));
   connect(TWW.heatPort, prescribedHeatFlow1.port) annotation(
     Line(points = {{-58, 66}, {-58, 68}, {-26, 68}, {-26, 78}}, color = {191, 0, 0}));
   connect(booleanToInteger.u, or1.y) annotation(
