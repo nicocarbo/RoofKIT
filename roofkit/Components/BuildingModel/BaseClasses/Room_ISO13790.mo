@@ -17,16 +17,16 @@ model Room_ISO13790
       annotation(Evaluate=true, Dialog(tab = "Transmission", group = "Opaque walls"));
   parameter Modelica.SIunits.Area A_f = 25 "Heated/cooled net floor area";
   parameter Modelica.SIunits.Area A_m = 3.5 * A_f
-    "Effective mass related surface area";          // ISO 13790 Seite 81
+    "Effective mass related surface area";            // ISO 13790 Seite 81
   parameter Modelica.SIunits.Area A_t = 4.5 * A_f
-    "Total inside surface area of room walls";      // ISO 13790 Seite 35/36
-  parameter Modelica.SIunits.Volume V_room = A_f * 2.5 "Volume of room";   // Annahme: Raumhöhe gleich 2,5 m!
+    "Total inside surface area of room walls";        // ISO 13790 Seite 35/36
+  parameter Modelica.SIunits.Volume V_room = A_f * 2.5 "Volume of room";     // Annahme: Raumhöhe gleich 2,5 m!
   parameter Real f_ms = 1 "Calibration factor for H_tr_ms (mass/surface)"
       annotation(Evaluate=true, Dialog(tab = "Transmission", group = "Calibration factors"));
   parameter Real f_is = 1 "Calibration factor for H_tr_is (surface/air)"
       annotation(Evaluate=true, Dialog(tab = "Transmission", group = "Calibration factors"));
   parameter Modelica.SIunits.HeatCapacity C_mass = 260000 * A_f
-    "Internal Heat Capacity of room (room's thermal mass)";      // ISO 13790 Seite 81
+    "Internal Heat Capacity of room (room's thermal mass)";        // ISO 13790 Seite 81
   parameter Modelica.SIunits.SpecificHeatCapacity cp_air = 1005
       annotation(Evaluate=true, Dialog(tab = "General", group = "Properties of air"));
   parameter Modelica.SIunits.Density rho_air = 1.293
@@ -71,7 +71,7 @@ model Room_ISO13790
   Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow Qdot_m
     annotation (Placement(transformation(extent={{50,-70},{30,-50}})));
   Modelica.Blocks.Sources.RealExpression realExpression1(y=0.5*Qdot_int)
-    annotation (Placement(transformation(extent={{100,74},{60,94}})));
+    annotation (Placement(visible = true, transformation(extent = {{98, 76}, {58, 96}}, rotation = 0)));
   Modelica.Blocks.Sources.RealExpression realExpression2(y=(1 - A_m/A_t -
         H_tr_win.G/(9.1*A_t))*(0.5*Qdot_int + Qdot_sol))
     annotation (Placement(transformation(extent={{100,14},{60,34}})));
@@ -86,17 +86,15 @@ model Room_ISO13790
     annotation (Placement(transformation(extent={{-10,50},{10,70}})));
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a port_surf
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
-protected
-  Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a port_mass
-    annotation (Placement(transformation(extent={{-10,-70},{10,-50}})));
-public
   Modelica.Thermal.HeatTransfer.Components.Convection H_vent
     annotation (Placement(transformation(extent={{-50,50},{-30,70}})));
   Modelica.Blocks.Interfaces.RealInput Vdot_vent
     annotation (Placement(transformation(extent={{-126,60},{-86,100}})));
   Modelica.Blocks.Math.Gain gainVent(k=(1 - f_WRG)*cp_air*rho_air*1/3600)
     annotation (Placement(transformation(extent={{-68,70},{-48,90}})));
-equation
+protected
+  Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a port_mass
+    annotation (Placement(transformation(extent={{-10,-70},{10,-50}})));equation
   T_air = C_air.T;
   T_surf = port_surf.T;
   T_mass = C_m.T;
@@ -160,9 +158,8 @@ equation
       color={191,0,0},
       smooth=Smooth.None));
   connect(realExpression1.y, Qdot_ia.Q_flow) annotation (Line(
-      points={{58,84},{54,84},{54,60},{50,60}},
-      color={0,0,127},
-      smooth=Smooth.None));
+      points = {{56, 86}, {54, 86}, {54, 60}, {50, 60}},
+      color={0,0,127}));
   connect(realExpression2.y, Qdot_st.Q_flow) annotation (Line(
       points={{58,24},{54,24},{54,6.66134e-16},{50,6.66134e-16}},
       color={0,0,127},
@@ -183,6 +180,8 @@ equation
     annotation (Line(points={{-47,80},{-40,80},{-40,70}}, color={0,0,127}));
   connect(gainVent.u, Vdot_vent)
     annotation (Line(points={{-70,80},{-106,80}}, color={0,0,127}));
+  connect(port_surf, port_amb) annotation(
+    Line(points = {{0, 0}, {-100, 0}}, color = {191, 0, 0}));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -100},{100,100}})),  Icon(graphics={Rectangle(
           extent={{-100,100},{100,-100}},

@@ -1,9 +1,9 @@
 within RoofKIT.Components.Solar.Electrical.Examples;
 model PVPanels "This example illustrates how to use PV panel models"
   extends Modelica.Icons.Example;
-  Buildings.Electrical.AC.OnePhase.Loads.Inductive RL(mode=Buildings.Electrical.Types.Load.VariableZ_y_input,
+  Buildings.Electrical.AC.OnePhase.Loads.Inductive RL(
       P_nominal=-2000,
-    V_nominal=120) "Load taht consumes the power generted by the PVs"
+    V_nominal=120,mode=Buildings.Electrical.Types.Load.VariableZ_y_input) "Load taht consumes the power generted by the PVs"
     annotation (Placement(transformation(extent={{20,-50},{40,-30}})));
   Buildings.Electrical.AC.OnePhase.Sources.Grid grid(f=60, V=120)
     "Electrical grid model"
@@ -29,10 +29,10 @@ model PVPanels "This example illustrates how to use PV panel models"
     annotation (Placement(transformation(extent={{40,0},{60,20}})));
   Buildings.Electrical.AC.OnePhase.Sources.PVSimpleOriented pvOriented(
     A=10,
-    til=0.34906585039887,
-    lat=0.65798912800186,
-    azi=-0.78539816339745,
-    V_nominal=120) "PV array oriented"
+    V_nominal=120,
+    azi(displayUnit = "rad") =-0.78539816339745,
+    lat(displayUnit = "rad") =0.65798912800186,
+    til(displayUnit = "rad") =0.34906585039887) "PV array oriented"
     annotation (Placement(transformation(extent={{-10,0},{10,20}})));
 equation
   connect(grid.terminal, RL.terminal)
