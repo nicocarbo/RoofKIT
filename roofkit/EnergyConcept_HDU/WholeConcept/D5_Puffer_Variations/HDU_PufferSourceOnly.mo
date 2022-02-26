@@ -66,7 +66,7 @@ model HDU_PufferSourceOnly
     Placement(visible = true, transformation(origin = {-34, -106}, extent = {{-4, -4}, {4, 4}}, rotation = 0)));
   Modelica.Blocks.Math.Product product3 annotation(
     Placement(visible = true, transformation(origin = {-10, -112}, extent = {{-4, 4}, {4, -4}}, rotation = 0)));
-  BuildingSystems.Technologies.ThermalStorages.FluidStorage TWW(redeclare package Medium = Medium_loa, redeclare package Medium_HX_1 = Medium_loa, redeclare package Medium_HX_2 = Medium_loa, HX_1 = true, HX_2 = false, T_start = 70 + 273.15, UA_HX_1 = 20000, V = 0.185, nEle = 5, thickness_ins = 0.05) annotation(
+  BuildingSystems.Technologies.ThermalStorages.FluidStorage TWW(redeclare package Medium = Medium_loa, redeclare package Medium_HX_1 = Medium_loa, redeclare package Medium_HX_2 = Medium_loa, HX_1 = true, HX_2 = false, T_start = 50 + 273.15, UA_HX_1 = 20000, V = 0.3, nEle = 3, thickness_ins = 0.01) annotation(
     Placement(visible = true, transformation(origin = {-58, 56}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Buildings.Fluid.Movers.FlowControlled_m_flow pump_TWW(redeclare replaceable package Medium = Medium_loa, energyDynamics = Modelica.Fluid.Types.Dynamics.SteadyState, m_flow_nominal = mSou_flow_nominal, nominalValuesDefineDefaultPressureCurve = true, use_inputFilter = false) annotation(
     Placement(visible = true, transformation(origin = {-91, 63}, extent = {{5, -5}, {-5, 5}}, rotation = 0)));
@@ -76,8 +76,6 @@ model HDU_PufferSourceOnly
     Placement(visible = true, transformation(origin = {-119, 47}, extent = {{-9, -9}, {9, 9}}, rotation = 0)));
   Buildings.Fluid.MixingVolumes.MixingVolume vol(redeclare package Medium = Medium_sou, V = 0.0003, m_flow_nominal = mSou_flow_nominal, nPorts = 2) annotation(
     Placement(visible = true, transformation(origin = {21, -79}, extent = {{-3, -3}, {3, 3}}, rotation = 0)));
-  Modelica.Blocks.Sources.Pulse pulse(amplitude = 0.1667, period = 28800, startTime = 43200, width = 1.0147) annotation(
-    Placement(visible = true, transformation(origin = {-161, 79}, extent = {{-5, -5}, {5, 5}}, rotation = 0)));
   Modelica.Fluid.Fittings.TeeJunctionIdeal teeJunctionIdeal(redeclare package Medium = Medium_loa) annotation(
     Placement(visible = true, transformation(origin = {-59, 11}, extent = {{-5, -5}, {5, 5}}, rotation = 180)));
   Buildings.Fluid.Actuators.Valves.TwoWayLinear val10(redeclare package Medium = Medium_loa, dpValve_nominal = 60, m_flow_nominal = mSou_flow_nominal, riseTime = 10) annotation(
@@ -98,8 +96,6 @@ model HDU_PufferSourceOnly
     Placement(visible = true, transformation(origin = {-174, 32}, extent = {{-4, -4}, {4, 4}}, rotation = 0)));
   Modelica.Blocks.Logical.Not not11 annotation(
     Placement(visible = true, transformation(origin = {-163, 13}, extent = {{-5, -5}, {5, 5}}, rotation = 0)));
-  Modelica.Blocks.Sources.Pulse pulse1(amplitude = 1, period = 86400, startTime = 43200, width = 1.0147) annotation(
-    Placement(visible = true, transformation(origin = {-161, 59}, extent = {{-5, -5}, {5, 5}}, rotation = 0)));
   Modelica.Blocks.Logical.Or or1 annotation(
     Placement(visible = true, transformation(origin = {-144, -10}, extent = {{-6, -6}, {6, 6}}, rotation = 0)));
   Modelica.Blocks.Math.BooleanToInteger booleanToInteger annotation(
@@ -148,7 +144,7 @@ model HDU_PufferSourceOnly
     Placement(visible = true, transformation(origin = {-126, 4}, extent = {{-4, 4}, {4, -4}}, rotation = 0)));
   Modelica.Blocks.Math.MultiSum multiSum(nu = 3) annotation(
     Placement(visible = true, transformation(origin = {14, -146}, extent = {{6, -6}, {-6, 6}}, rotation = 0)));
-  Modelica.Blocks.Sources.Constant constant2(k = 273.15 + 35) annotation(
+  Modelica.Blocks.Sources.Constant constant2(k = 273.15 + 40) annotation(
     Placement(visible = true, transformation(origin = {-178, -22}, extent = {{-4, -4}, {4, 4}}, rotation = 0)));
   Modelica.Blocks.Math.Product product2 annotation(
     Placement(visible = true, transformation(origin = {-71, -49}, extent = {{-5, 5}, {5, -5}}, rotation = 0)));
@@ -198,6 +194,10 @@ model HDU_PufferSourceOnly
     Placement(visible = true, transformation(origin = {40, -170}, extent = {{4, -4}, {-4, 4}}, rotation = 0)));
   Modelica.Blocks.Math.Max max1 annotation(
     Placement(visible = true, transformation(origin = {-3, -162}, extent = {{7, -7}, {-7, 7}}, rotation = 0)));
+  Modelica.Blocks.Sources.Pulse pulse1(amplitude = 1, period = 86400, startTime = 43200, width = 0.5787037) annotation(
+    Placement(visible = true, transformation(origin = {-161, 59}, extent = {{-5, -5}, {5, 5}}, rotation = 0)));
+  Modelica.Blocks.Sources.Pulse pulse(amplitude = 0.3, period = 86400, startTime = 43200, width = 0.5787037) annotation(
+    Placement(visible = true, transformation(origin = {-161, 79}, extent = {{-5, -5}, {5, 5}}, rotation = 0)));
 equation
 //Connections
   connect(weaDat1.weaBus, Gebaeude_modell.weaBus) annotation(
@@ -236,8 +236,6 @@ equation
     Line(points = {{-51, 65}, {-72, 65}, {-72, 64}, {-86, 64}}, color = {0, 127, 255}));
   connect(vol.ports[1], thermalCollector.port_a) annotation(
     Line(points = {{21, -82}, {32, -82}}, color = {0, 127, 255}));
-  connect(pulse.y, pump_TWW.m_flow_in) annotation(
-    Line(points = {{-155.5, 79}, {-146, 79}, {-146, 86}, {-90, 86}, {-90, 70}}, color = {0, 0, 127}));
   connect(bou_loa.ports[1], pump_loa.port_a) annotation(
     Line(points = {{16, 10}, {23, 10}, {23, -2}, {38, -2}}, color = {0, 127, 255}));
   connect(Waschbecken.ports[1], pump_TWW.port_b) annotation(
@@ -262,8 +260,6 @@ equation
     Line(points = {{-175.5, 13}, {-169, 13}}, color = {255, 0, 255}));
   connect(not11.y, booleanToReal3.u) annotation(
     Line(points = {{-157.5, 13}, {-149, 13}}, color = {255, 0, 255}));
-  connect(pulse1.y, val12.y) annotation(
-    Line(points = {{-156, 60}, {-142, 60}, {-142, 34}, {-90, 34}, {-90, 44}}, color = {0, 0, 127}));
   connect(teeJunctionIdeal.port_3, senTem.port_a) annotation(
     Line(points = {{-58, 6}, {-58, -3}, {-56, -3}}, color = {0, 127, 255}));
   connect(not11.y, or1.u1) annotation(
@@ -430,6 +426,10 @@ equation
     Line(points = {{-58, 66}, {-58, 68}, {-26, 68}, {-26, 78}}, color = {191, 0, 0}));
   connect(val7.port_a, Quelle_Puffer.port_HX_1_a) annotation(
     Line(points = {{16, -42}, {12, -42}, {12, -46}, {-2, -46}}, color = {0, 127, 255}));
+  connect(pulse1.y, val12.y) annotation(
+    Line(points = {{-156, 60}, {-148, 60}, {-148, 38}, {-90, 38}, {-90, 44}}, color = {0, 0, 127}));
+  connect(pump_TWW.m_flow_in, pulse.y) annotation(
+    Line(points = {{-90, 70}, {-92, 70}, {-92, 88}, {-148, 88}, {-148, 80}, {-156, 80}}, color = {0, 0, 127}));
   annotation(
     Diagram(graphics = {Rectangle(origin = {9, 115}, fillColor = {170, 170, 127}, fillPattern = FillPattern.Solid, extent = {{-91, 23}, {91, -23}}), Rectangle(origin = {-47, 61}, fillColor = {170, 213, 255}, fillPattern = FillPattern.Solid, extent = {{35, -29}, {-35, 29}}), Rectangle(origin = {45, 61}, fillColor = {255, 121, 161}, fillPattern = FillPattern.Solid, extent = {{55, -29}, {-55, 29}}), Rectangle(origin = {9, 2}, fillColor = {255, 147, 147}, fillPattern = FillPattern.Solid, extent = {{91, -28}, {-91, 28}}), Rectangle(origin = {-165, -9}, fillColor = {181, 181, 181}, fillPattern = FillPattern.Solid, extent = {{-81, 147}, {81, -147}}), Rectangle(origin = {9, -96}, fillColor = {62, 186, 91}, fillPattern = FillPattern.Solid, extent = {{91, -32}, {-91, 32}}), Rectangle(origin = {-111, 61}, fillColor = {169, 255, 169}, fillPattern = FillPattern.Solid, extent = {{27, -29}, {-27, 29}}), Rectangle(origin = {193, -298}, fillColor = {181, 181, 181}, fillPattern = FillPattern.Solid, extent = {{-91, 12}, {91, -12}}), Rectangle(origin = {155, -8}, fillColor = {181, 181, 181}, fillPattern = FillPattern.Solid, extent = {{-53, 146}, {53, -146}}), Rectangle(origin = {9, -45}, fillColor = {78, 234, 114}, fillPattern = FillPattern.Solid, extent = {{91, -17}, {-91, 17}})}, coordinateSystem(extent = {{-180, -180}, {180, 180}})),
     experiment(StartTime = 0, StopTime = 31536000, Tolerance = 1e-6, Interval = 3600),

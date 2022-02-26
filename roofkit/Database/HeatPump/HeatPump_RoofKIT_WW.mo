@@ -4,14 +4,16 @@ record HeatPump_RoofKIT_WW =
     dpHeaSou_nominal = 530,
     dpHeaLoa_nominal = 460,
     hea(
-      TRefLoa = 35 + 273.15,
-      TRefSou = 10 + 273.15,
-      Q_flow = 7560.00,
-      P = 1340,
-      mSou_flow = 0.3,
-      mLoa_flow = 0.3,
-      coeQ = {0.9728,-0.3772,6.1794,0.00,0.00},
-      coeP = {0.2484,7.3108,0.4512,0.00,0.00}),
+      TRefLoa = 30 + 273.15,
+      TRefSou = 0 + 273.15,
+      Q_flow = 5850.00,
+      P = 1270,
+      mSou_flow = 1000/3600,
+      mLoa_flow = 1040/3600,
+      //coeQ = {0.9728,-0.3772,6.1794,0.00,0.00}, //Stand SS21
+      //coeP = {0.2484,7.3108,0.4512,0.00,0.00}),
+      coeQ = {-4.31,-2.8,8.17,0.00,0.00}, //Stand WS21/22
+      coeP = {-8.66 ,6.75,2.94,0.00,0.00}),
     coo(
       TRefSou = 28 + 273.15,
       TRefLoa =  12 + 273.15,
