@@ -55,48 +55,48 @@ model HDU_Full
   Modelica.Blocks.Logical.Hysteresis hyst_TWW(uHigh = 45 + 273.15, uLow = 41 + 273.15) annotation(
     Placement(visible = true, transformation(origin = {-149, 55}, extent = {{-5, -5}, {5, 5}}, rotation = 0)));
   BuildingSystems.Technologies.ThermalStorages.FluidStorage Quelle_Puffer(redeclare package Medium = Medium_sou, redeclare package Medium_HX_1 = Medium_sou, redeclare package Medium_HX_2 = Medium_sou, HX_1 = true, HX_2 = false, T_start = 30 + 273.15, UA_HX_1 = 20000, UA_HX_2 = 20000, V = 1.0, height = 1.5, nEle = 5, thickness_ins = 0.15, thickness_wall = 0.3) annotation(
-    Placement(visible = true, transformation(origin = {-10, -68}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {-16, -68}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Buildings.Fluid.Movers.FlowControlled_m_flow pump_solCol(redeclare replaceable package Medium = Medium_sou, addPowerToMedium = false, energyDynamics = Modelica.Fluid.Types.Dynamics.SteadyState, m_flow_nominal = mSou_flow_nominal, nominalValuesDefineDefaultPressureCurve = true, use_inputFilter = false, y_start = 1) annotation(
     Placement(visible = true, transformation(origin = {-20, -138}, extent = {{-6, 6}, {6, -6}}, rotation = 0)));
   Buildings.Fluid.Sources.Boundary_pT MAG_HP_sou(redeclare package Medium = Medium_sou, nPorts = 1, use_T_in = false) annotation(
     Placement(visible = true, transformation(origin = {36, -20}, extent = {{4, -4}, {-4, 4}}, rotation = 0)));
   Modelica.Blocks.Math.Add add_solCol(k2 = -1) annotation(
-    Placement(visible = true, transformation(origin = {85, -63}, extent = {{-5, 5}, {5, -5}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {39, -43}, extent = {{-5, 5}, {5, -5}}, rotation = 0)));
   Modelica.Blocks.Logical.Hysteresis hysteresis_solCol(uHigh = 2, uLow = 0) annotation(
-    Placement(visible = true, transformation(origin = {103, -63}, extent = {{-5, -5}, {5, 5}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {57, -43}, extent = {{-5, -5}, {5, 5}}, rotation = 0)));
   Buildings.Fluid.Actuators.Valves.TwoWayLinear val7(redeclare package Medium = Medium_sou, CvData = Buildings.Fluid.Types.CvTypes.OpPoint, dpValve_nominal = 600, m_flow_nominal = mSou_flow_nominal, riseTime = 10) annotation(
-    Placement(visible = true, transformation(origin = {20, -66}, extent = {{4, -4}, {-4, 4}}, rotation = 180)));
+    Placement(visible = true, transformation(origin = {6, -72}, extent = {{4, -4}, {-4, 4}}, rotation = 180)));
   Buildings.Fluid.Actuators.Valves.TwoWayLinear val8(redeclare package Medium = Medium_sou, dpValve_nominal = 600, m_flow_nominal = mSou_flow_nominal, riseTime = 10) annotation(
-    Placement(visible = true, transformation(origin = {20, -92}, extent = {{4, 4}, {-4, -4}}, rotation = 180)));
+    Placement(visible = true, transformation(origin = {6, -96}, extent = {{4, 4}, {-4, -4}}, rotation = 180)));
   Modelica.Fluid.Fittings.TeeJunctionIdeal T_QP1(redeclare package Medium = Medium_sou) annotation(
-    Placement(visible = true, transformation(origin = {6, -92}, extent = {{-4, -4}, {4, 4}}, rotation = -90)));
+    Placement(visible = true, transformation(origin = {-26, -96}, extent = {{-4, -4}, {4, 4}}, rotation = -90)));
   Modelica.Fluid.Fittings.TeeJunctionIdeal T_QP2(redeclare package Medium = Medium_sou) annotation(
-    Placement(visible = true, transformation(origin = {38, -66}, extent = {{-4, -4}, {4, 4}}, rotation = 180)));
+    Placement(visible = true, transformation(origin = {26, -72}, extent = {{-4, -4}, {4, 4}}, rotation = 180)));
   Modelica.Blocks.Math.BooleanToReal btr_solCol annotation(
-    Placement(visible = true, transformation(origin = {121, -63}, extent = {{-5, -5}, {5, 5}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {74, -43}, extent = {{-5, -5}, {5, 5}}, rotation = 0)));
   Modelica.Blocks.Math.Add add2_solCol(k1 = -1) annotation(
-    Placement(visible = true, transformation(origin = {103, -87}, extent = {{5, -5}, {-5, 5}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {47, -59}, extent = {{5, -5}, {-5, 5}}, rotation = 0)));
   Modelica.Blocks.Sources.Constant const_solCol(k = 1) annotation(
-    Placement(visible = true, transformation(origin = {144, -90}, extent = {{4, -4}, {-4, 4}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {64, -64}, extent = {{4, -4}, {-4, 4}}, rotation = 0)));
   Buildings.Fluid.Sensors.TemperatureTwoPort Temp_In_solCol(redeclare package Medium = Medium_sou, m_flow_nominal = mSou_flow_nominal) annotation(
     Placement(visible = true, transformation(origin = {3, -138}, extent = {{-7, 6}, {7, -6}}, rotation = 180)));
   Modelica.Blocks.Nonlinear.Limiter limiter(limitsAtInit = true, uMax = 1500, uMin = 0) annotation(
-    Placement(visible = true, transformation(origin = {178, -154}, extent = {{6, -6}, {-6, 6}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {178, -74}, extent = {{6, -6}, {-6, 6}}, rotation = 0)));
   Modelica.Blocks.Math.Max max annotation(
-    Placement(visible = true, transformation(origin = {103, -158}, extent = {{7, -7}, {-7, 7}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {105, -74}, extent = {{5, -5}, {-5, 5}}, rotation = 0)));
   Modelica.Blocks.Continuous.Integrator integrator_WP_Th annotation(
-    Placement(visible = true, transformation(origin = {150, -128}, extent = {{6, -6}, {-6, 6}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {150, -48}, extent = {{6, -6}, {-6, 6}}, rotation = 0)));
   Modelica.Blocks.Math.Division JAZ annotation(
-    Placement(visible = true, transformation(origin = {103, -135}, extent = {{7, -7}, {-7, 7}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {104, -48}, extent = {{6, -6}, {-6, 6}}, rotation = 0)));
   Modelica.Blocks.Continuous.Integrator integrator_WP_El annotation(
-    Placement(visible = true, transformation(origin = {152, -148}, extent = {{6, -6}, {-6, 6}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {152, -68}, extent = {{6, -6}, {-6, 6}}, rotation = 0)));
   Modelica.Blocks.Sources.Constant constant3(k = 1) annotation(
-    Placement(visible = true, transformation(origin = {120, -170}, extent = {{4, -4}, {-4, 4}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {118, -88}, extent = {{4, -4}, {-4, 4}}, rotation = 0)));
   Modelica.Blocks.Nonlinear.Limiter limiter1(limitsAtInit = true, uMax = 10000, uMin = 0) annotation(
-    Placement(visible = true, transformation(origin = {178, -128}, extent = {{6, -6}, {-6, 6}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {178, -48}, extent = {{6, -6}, {-6, 6}}, rotation = 0)));
   Modelica.Blocks.Sources.Constant massflow_solCol(k = mSolCol_flow_nominal) annotation(
     Placement(visible = true, transformation(origin = {-70, -126}, extent = {{-4, -4}, {4, 4}}, rotation = 0)));
-  Modelica.Blocks.Sources.CombiTimeTable HDU(extrapolation = Modelica.Blocks.Types.Extrapolation.Periodic, fileName = "C:/Users/vp3411/Documents/Programme/Modelica/RoofKIT/roofkit/Resources/BuildingData/HDU/HDU_input.txt", table = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], tableName = "HDU", tableOnFile = true) annotation(
+  Modelica.Blocks.Sources.CombiTimeTable HDU(extrapolation = Modelica.Blocks.Types.Extrapolation.Periodic, fileName = "C:/Users/vp3411/Documents/Programme/Modelica/RoofKIT/roofkit/Resources/BuildingData/HDU/Input_HDU.txt", table = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], tableName = "HDU", tableOnFile = true) annotation(
     Placement(visible = true, transformation(origin = {4, 168}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
   Modelica.Blocks.Math.Gain gain_FH(k = -54) annotation(
     Placement(visible = true, transformation(origin = {30, 106}, extent = {{-8, -8}, {8, 8}}, rotation = 0)));
@@ -151,9 +151,9 @@ model HDU_Full
   Modelica.Blocks.Math.BooleanToInteger bti_HP annotation(
     Placement(visible = true, transformation(origin = {-106, -50}, extent = {{-6, -6}, {6, 6}}, rotation = 0)));
   Modelica.Blocks.Continuous.Integrator integrator annotation(
-    Placement(visible = true, transformation(origin = {154, -168}, extent = {{6, -6}, {-6, 6}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {154, -88}, extent = {{6, -6}, {-6, 6}}, rotation = 0)));
   Modelica.Blocks.Math.Add add annotation(
-    Placement(visible = true, transformation(origin = {131, -153}, extent = {{5, -5}, {-5, 5}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {131, -71}, extent = {{5, -5}, {-5, 5}}, rotation = 0)));
   Modelica.Blocks.Sources.Constant Tset_TWW(k = 273.15 + 45) annotation(
     Placement(visible = true, transformation(origin = {-180, 20}, extent = {{-4, -4}, {4, 4}}, rotation = 0)));
   Modelica.Blocks.Math.Product product_contHP annotation(
@@ -182,7 +182,7 @@ model HDU_Full
     Placement(visible = true, transformation(origin = {112, 64}, extent = {{-6, 6}, {6, -6}}, rotation = 0)));
   RoofKIT.Components.Controls.BatteryControl batteryControl annotation(
     Placement(visible = true, transformation(origin = {-109, -134}, extent = {{-9, -10}, {9, 10}}, rotation = 0)));
-  Buildings.Electrical.DC.Sources.PVSimpleOriented pVSimpleOriented(A = 16, V_nominal = 400, azi(displayUnit = "rad") = -0.7853981633974501, eta = 0.18, lat(displayUnit = "rad") = 0.6579891280018599, til(displayUnit = "rad") = 0.2094395102393195) annotation(
+  Buildings.Electrical.DC.Sources.PVSimpleOriented pVSimpleOriented(A = 16.2, V_nominal = 400, azi(displayUnit = "rad") = -0.7853981633974501, eta = 0.18, lat(displayUnit = "rad") = 0.6579891280018599, til(displayUnit = "rad") = 0.2094395102393195) annotation(
     Placement(visible = true, transformation(origin = {36, -164}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
   Buildings.Electrical.AC.OnePhase.Conversion.ACDCConverter conv(conversionFactor = 220 / 220, eta = 0.98) annotation(
     Placement(visible = true, transformation(origin = {-166, -164}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -200,8 +200,6 @@ model HDU_Full
     Placement(visible = true, transformation(origin = {-175, -79}, extent = {{-5, -5}, {5, 5}}, rotation = 0)));
   Modelica.Blocks.Logical.And and_time annotation(
     Placement(visible = true, transformation(origin = {-155, -79}, extent = {{-5, 5}, {5, -5}}, rotation = 0)));
-  Modelica.Blocks.Math.Add3 add_pow annotation(
-    Placement(visible = true, transformation(origin = {-158, -130}, extent = {{6, -6}, {-6, 6}}, rotation = 0)));
   Buildings.Fluid.Sensors.Temperature Temp_FH(redeclare package Medium = Medium_loa) annotation(
     Placement(visible = true, transformation(origin = {9, 76}, extent = {{-5, 4}, {5, -4}}, rotation = 0)));
   Modelica.Blocks.Logical.And and3 annotation(
@@ -222,40 +220,78 @@ model HDU_Full
     Placement(visible = true, transformation(origin = {91, 115}, extent = {{5, -5}, {-5, 5}}, rotation = 0)));
   Modelica.Blocks.Math.Gain gain_el(k = -1) annotation(
     Placement(visible = true, transformation(origin = {-169, -147}, extent = {{7, -7}, {-7, 7}}, rotation = 0)));
+  Modelica.Blocks.Continuous.Integrator E_g annotation(
+    Placement(visible = true, transformation(origin = {152, -146}, extent = {{6, -6}, {-6, 6}}, rotation = 0)));
+  Modelica.Blocks.Continuous.Integrator E_f annotation(
+    Placement(visible = true, transformation(origin = {116, -170}, extent = {{6, -6}, {-6, 6}}, rotation = 0)));
+  Modelica.Blocks.Math.Add E_c annotation(
+    Placement(visible = true, transformation(origin = {154, -128}, extent = {{6, -6}, {-6, 6}}, rotation = 0)));
+  Modelica.Blocks.Sources.RealExpression I_sc(y = (E_g.y - E_f.y) / E_g_filt.y) annotation(
+    Placement(visible = true, transformation(origin = {101, -118}, extent = {{9, -6}, {-9, 6}}, rotation = 0)));
+  Modelica.Blocks.Math.Gain gain_grid(k = -1) annotation(
+    Placement(visible = true, transformation(origin = {156, -170}, extent = {{6, -6}, {-6, 6}}, rotation = 0)));
+  Modelica.Blocks.Continuous.Integrator E_h annotation(
+    Placement(visible = true, transformation(origin = {180, -124}, extent = {{6, -6}, {-6, 6}}, rotation = 0)));
+  Modelica.Blocks.Sources.RealExpression grid_Preal(y = grid.P.real) annotation(
+    Placement(visible = true, transformation(origin = {180, -171}, extent = {{10, -7}, {-10, 7}}, rotation = 0)));
+  Modelica.Blocks.Math.Gain E_eb_kwh(k = 1 / 1000 / 3600) annotation(
+    Placement(visible = true, transformation(origin = {104, -142}, extent = {{6, -6}, {-6, 6}}, rotation = 0)));
+  Modelica.Blocks.Math.Gain E_c_kwh(k = 1 / 1000 / 3600) annotation(
+    Placement(visible = true, transformation(origin = {123, -121}, extent = {{5, -5}, {-5, 5}}, rotation = 0)));
+  Modelica.Blocks.Nonlinear.Limiter lim_grid(limitsAtInit = true, uMax = 100000, uMin = 0) annotation(
+    Placement(visible = true, transformation(origin = {138, -170}, extent = {{6, -6}, {-6, 6}}, rotation = 0)));
+  Modelica.Blocks.Math.Add E_eb(k1 = -1) annotation(
+    Placement(visible = true, transformation(origin = {130, -142}, extent = {{6, -6}, {-6, 6}}, rotation = 0)));
+  Modelica.Blocks.Sources.Constant constant1(k = 1) annotation(
+    Placement(visible = true, transformation(origin = {184, -140}, extent = {{4, -4}, {-4, 4}}, rotation = 0)));
+  Modelica.Blocks.Math.Max E_g_filt annotation(
+    Placement(visible = true, transformation(origin = {101, -128}, extent = {{5, -5}, {-5, 5}}, rotation = 0)));
+  Modelica.Blocks.Sources.RealExpression vent_power(y = 0.33 ^ 3 * 3.3 * 4 + 6.2 * 3 / 3 / 24) annotation(
+    Placement(visible = true, transformation(origin = {-139, -151}, extent = {{7, -5}, {-7, 5}}, rotation = 0)));
+  Modelica.Blocks.Math.MultiSum power_total(nu = 4) annotation(
+    Placement(visible = true, transformation(origin = {-155, -129}, extent = {{5, -5}, {-5, 5}}, rotation = 0)));
+  Modelica.Blocks.Math.Add add1 annotation(
+    Placement(visible = true, transformation(origin = {107, -101}, extent = {{5, -5}, {-5, 5}}, rotation = 0)));
+  Modelica.Blocks.Continuous.Integrator integratorvent annotation(
+    Placement(visible = true, transformation(origin = {182, -98}, extent = {{6, -6}, {-6, 6}}, rotation = 0)));
+  Modelica.Blocks.Math.Gain E_g_kwh(k = 1 / 1000 / 3600) annotation(
+    Placement(visible = true, transformation(origin = {176, -156}, extent = {{-6, -6}, {6, 6}}, rotation = 0)));
+  Modelica.Blocks.Math.Gain E_f_kwh(k = 1 / 1000 / 3600) annotation(
+    Placement(visible = true, transformation(origin = {96, -170}, extent = {{6, -6}, {-6, 6}}, rotation = 0)));
 equation
 //Connections
   connect(weaDat1.weaBus, thermalCollector.WeaBusWeaPar) annotation(
-    Line(points = {{64, 166}, {64, 165}, {198, 165}, {198, -124}, {79, -124}, {79, -148}, {32, -148}}, color = {255, 204, 51}, thickness = 0.5));
+    Line(points = {{64, 166}, {64, 165}, {196, 165}, {196, -184}, {79, -184}, {79, -148}, {32, -148}}, color = {255, 204, 51}, thickness = 0.5));
   connect(Waschbecken.ports[1], pump_TWW.port_b) annotation(
     Line(points = {{-110, 111}, {-104, 111}, {-104, 105}, {-96, 105}}, color = {0, 127, 255}));
   connect(Wasseranschluss.ports[1], val12.port_b) annotation(
     Line(points = {{-110, 85}, {-102, 85}, {-102, 86}, {-94, 86}}, color = {0, 127, 255}));
   connect(heaPum.port_b2, Quelle_Puffer.port_a1) annotation(
-    Line(points = {{-38, -17}, {-42, -17}, {-42, -77}, {-17, -77}}, color = {0, 127, 255}));
+    Line(points = {{-38, -17}, {-42, -17}, {-42, -77}, {-23, -77}}, color = {0, 127, 255}));
   connect(T_QP1.port_1, Quelle_Puffer.port_HX_1_b) annotation(
-    Line(points = {{6, -88}, {6, -74}, {-3, -74}}, color = {0, 127, 255}));
+    Line(points = {{-26, -92}, {-26, -87}, {-6, -87}, {-6, -86}, {-4.5, -86}, {-4.5, -74}, {-9, -74}}, color = {0, 127, 255}));
   connect(Quelle_Puffer.port_HX_1_a, val7.port_a) annotation(
-    Line(points = {{-3, -72}, {6, -72}, {6, -66}, {16, -66}}, color = {0, 127, 255}));
+    Line(points = {{-9, -72}, {2, -72}}, color = {0, 127, 255}));
   connect(val7.port_b, T_QP2.port_2) annotation(
-    Line(points = {{24, -66}, {34, -66}}, color = {0, 127, 255}));
+    Line(points = {{10, -72}, {22, -72}}, color = {0, 127, 255}));
   connect(T_QP1.port_3, val8.port_a) annotation(
-    Line(points = {{10, -92}, {16, -92}}, color = {0, 127, 255}));
+    Line(points = {{-22, -96}, {2, -96}}, color = {0, 127, 255}));
   connect(val8.port_b, T_QP2.port_3) annotation(
-    Line(points = {{24, -92}, {38, -92}, {38, -70}}, color = {0, 127, 255}));
+    Line(points = {{10, -96}, {26, -96}, {26, -76}}, color = {0, 127, 255}));
   connect(constant3.y, max.u2) annotation(
-    Line(points = {{115.6, -170}, {111.7, -170}, {111.7, -162}, {110.6, -162}}, color = {0, 0, 127}));
+    Line(points = {{114, -88}, {111.7, -88}, {111.7, -77}, {111, -77}}, color = {0, 0, 127}));
   connect(JAZ.u2, max.y) annotation(
-    Line(points = {{111.4, -139.2}, {122.1, -139.2}, {122.1, -145.2}, {88.8, -145.2}, {88.8, -158.2}, {95.4, -158.2}}, color = {0, 0, 127}));
+    Line(points = {{111, -52}, {116.5, -52}, {116.5, -65.4}, {93.2, -65.4}, {93.2, -74}, {99.5, -74}}, color = {0, 0, 127}));
   connect(integrator_WP_Th.y, JAZ.u1) annotation(
-    Line(points = {{143.4, -128}, {124.8, -128}, {124.8, -131}, {109.4, -131}}, color = {0, 0, 127}));
+    Line(points = {{143.4, -48}, {124.8, -48}, {124.8, -44}, {111, -44}}, color = {0, 0, 127}));
   connect(integrator_WP_Th.u, limiter1.y) annotation(
-    Line(points = {{157.2, -126}, {169.2, -126}}, color = {0, 0, 127}));
+    Line(points = {{157.2, -48}, {169.2, -48}}, color = {0, 0, 127}));
   connect(integrator_WP_El.u, limiter.y) annotation(
-    Line(points = {{159.2, -148}, {165.2, -148}, {165.2, -154}, {171.2, -154}}, color = {0, 0, 127}));
+    Line(points = {{159.2, -68}, {165.2, -68}, {165.2, -74}, {171.2, -74}}, color = {0, 0, 127}));
   connect(limiter1.u, heaPum.QLoa_flow) annotation(
-    Line(points = {{185, -128}, {190, -128}, {190, -8}, {-3, -8}, {-3, 1}, {-9, 1}}, color = {0, 0, 127}));
+    Line(points = {{185, -48}, {190, -48}, {190, -8}, {-3, -8}, {-3, 1}, {-9, 1}}, color = {0, 0, 127}));
   connect(limiter.u, heaPum.P) annotation(
-    Line(points = {{185, -154}, {192, -154}, {192, -10}, {-9, -10}}, color = {0, 0, 127}));
+    Line(points = {{185, -74}, {192, -74}, {192, -10}, {-9, -10}}, color = {0, 0, 127}));
   connect(gain1.u, HDU.y[10]) annotation(
     Line(points = {{-53, 121}, {-44, 121}, {-44, 168}, {-7, 168}}, color = {0, 0, 127}));
   connect(gain1.y, pump_TWW.m_flow_in) annotation(
@@ -275,19 +311,19 @@ equation
   connect(teeJunctionIdeal.port_1, mixingVolume.ports[2]) annotation(
     Line(points = {{-58, 13}, {0, 13}, {0, 128}, {36, 128}}, color = {0, 127, 255}));
   connect(Quelle_Puffer.T[2], add_solCol.u2) annotation(
-    Line(points = {{-17.4, -62}, {-27.4, -62}, {-27.4, -52}, {73.1, -52}, {73.1, -60}, {79.6, -60}}, color = {0, 0, 127}));
+    Line(points = {{-23, -62}, {-27.4, -62}, {-27.4, -40}, {33, -40}}, color = {0, 0, 127}));
   connect(add_solCol.y, hysteresis_solCol.u) annotation(
-    Line(points = {{90.5, -63}, {97, -63}}, color = {0, 0, 127}));
+    Line(points = {{44.5, -43}, {51, -43}}, color = {0, 0, 127}));
   connect(hysteresis_solCol.y, btr_solCol.u) annotation(
-    Line(points = {{108.5, -63}, {115, -63}}, color = {255, 0, 255}));
+    Line(points = {{62.5, -43}, {69, -43}}, color = {255, 0, 255}));
   connect(btr_solCol.y, add2_solCol.u1) annotation(
-    Line(points = {{126.5, -63}, {134, -63}, {134, -84}, {109, -84}}, color = {0, 0, 127}));
+    Line(points = {{79.5, -43}, {82, -43}, {82, -56}, {53, -56}}, color = {0, 0, 127}));
   connect(const_solCol.y, add2_solCol.u2) annotation(
-    Line(points = {{140, -90}, {109, -90}}, color = {0, 0, 127}));
+    Line(points = {{60, -64}, {57.5, -64}, {57.5, -62}, {53, -62}}, color = {0, 0, 127}));
   connect(btr_solCol.y, val7.y) annotation(
-    Line(points = {{126.5, -63}, {130, -63}, {130, -76}, {19, -76}, {19, -71}, {20, -71}}, color = {0, 0, 127}));
+    Line(points = {{79.5, -43}, {82, -43}, {82, -80}, {19, -80}, {19, -77}, {6, -77}}, color = {0, 0, 127}));
   connect(val8.y, add2_solCol.y) annotation(
-    Line(points = {{20, -87}, {19.375, -87}, {19.375, -81.2}, {58.75, -81.2}, {58.75, -87}, {97.5, -87}}, color = {0, 0, 127}));
+    Line(points = {{6, -91}, {19.375, -91}, {19.375, -91.2}, {36.75, -91.2}, {36.75, -59}, {41.5, -59}}, color = {0, 0, 127}));
   connect(hyst_TWW.y, not_TWW.u) annotation(
     Line(points = {{-143.5, 55}, {-139, 55}}, color = {255, 0, 255}));
   connect(HDU.y[3], gain_FH.u) annotation(
@@ -301,13 +337,13 @@ equation
   connect(pump_HP_sou.port_a, MAG_HP_sou.ports[1]) annotation(
     Line(points = {{16, -18}, {26, -18}, {26, -20}, {32, -20}}, color = {0, 127, 255}));
   connect(Quelle_Puffer.port_a2, pump_HP_sou.port_a) annotation(
-    Line(points = {{-3, -59}, {6.5, -59}, {6.5, -47}, {16, -47}, {16, -18}}, color = {0, 127, 255}));
+    Line(points = {{-9, -59}, {6.5, -59}, {6.5, -47}, {16, -47}, {16, -18}}, color = {0, 127, 255}));
   connect(T_QP1.port_2, pump_solCol.port_a) annotation(
-    Line(points = {{6, -96}, {6, -125}, {-26, -125}, {-26, -138}}, color = {0, 127, 255}));
+    Line(points = {{-26, -100}, {-26, -138}}, color = {0, 127, 255}));
   connect(thermalCollector.port_b, Temp_Out_solCol.port_b) annotation(
     Line(points = {{48, -138}, {52, -138}}, color = {0, 127, 255}));
   connect(T_QP2.port_1, Temp_Out_solCol.port_a) annotation(
-    Line(points = {{42, -66}, {70, -66}, {70, -138}, {66, -138}}, color = {0, 127, 255}));
+    Line(points = {{30, -72}, {70, -72}, {70, -138}, {66, -138}}, color = {0, 127, 255}));
   connect(pump_solCol.port_b, Temp_In_solCol.port_b) annotation(
     Line(points = {{-14, -138}, {-4, -138}}, color = {0, 127, 255}));
   connect(MAG_solCol.ports[1], pump_solCol.port_a) annotation(
@@ -355,15 +391,15 @@ equation
   connect(btr_Eheater.y, prod_eheat_TWW.u1) annotation(
     Line(points = {{149.5, 5}, {142, 5}, {142, 6}, {136, 6}}, color = {0, 0, 127}));
   connect(add_solCol.u1, Temp_Out_solCol.T) annotation(
-    Line(points = {{79, -66}, {74, -66}, {74, -92}, {59, -92}, {59, -131}}, color = {0, 0, 127}));
+    Line(points = {{33, -46}, {74, -46}, {74, -92}, {59, -92}, {59, -131}}, color = {0, 0, 127}));
   connect(max.u1, add.y) annotation(
-    Line(points = {{111.4, -153.8}, {116.4, -153.8}, {116.4, -152.8}, {125.9, -152.8}}, color = {0, 0, 127}));
+    Line(points = {{111, -71}, {125.5, -71}}, color = {0, 0, 127}));
   connect(add.u1, integrator_WP_El.y) annotation(
-    Line(points = {{137, -150}, {141, -150}, {141, -148}, {145, -148}}, color = {0, 0, 127}));
+    Line(points = {{137, -68}, {145, -68}}, color = {0, 0, 127}));
   connect(add.u2, integrator.y) annotation(
-    Line(points = {{137, -156}, {141, -156}, {141, -168}, {147, -168}}, color = {0, 0, 127}));
+    Line(points = {{137, -74}, {141, -74}, {141, -88}, {147, -88}}, color = {0, 0, 127}));
   connect(integrator.u, prod_eheat_TWW.y) annotation(
-    Line(points = {{161, -168}, {162, -168}, {162, -24}, {124.5, -24}, {124.5, 9}}, color = {0, 0, 127}));
+    Line(points = {{161, -88}, {162, -88}, {162, -24}, {124.5, -24}, {124.5, 9}}, color = {0, 0, 127}));
   connect(pump_solCol.m_flow_in, massflow_solCol.y) annotation(
     Line(points = {{-20, -145.2}, {-54, -145.2}, {-54, -126}, {-66, -126}}, color = {0, 0, 127}));
   connect(btr_TWW.y, product_contHP.u2) annotation(
@@ -413,7 +449,7 @@ equation
   connect(and2.y, sw_FH.u2) annotation(
     Line(points = {{118, 64}, {122, 64}, {122, 74}, {134, 74}}, color = {255, 0, 255}));
   connect(hysteresis.u, Quelle_Puffer.T[4]) annotation(
-    Line(points = {{-93, -85}, {-54.5, -85}, {-54.5, -73}, {-28, -73}, {-28, -62}, {-17, -62}}, color = {0, 0, 127}));
+    Line(points = {{-93, -85}, {-54.5, -85}, {-54.5, -73}, {-28, -73}, {-28, -62}, {-23, -62}}, color = {0, 0, 127}));
   connect(Temp_In_solCol.port_a, thermalCollector.port_a) annotation(
     Line(points = {{10, -138}, {28, -138}}, color = {0, 127, 255}));
   connect(teeJunctionIdeal1.port_2, pump_HP_FH.port_a) annotation(
@@ -439,12 +475,6 @@ equation
     Line(points = {{-179, -96}, {-174, -96}, {-174, -97}, {-175, -97}}, color = {255, 127, 0}));
   connect(itr_time.y, gre_time.u) annotation(
     Line(points = {{-164, -96}, {-162, -96}, {-162, -88}, {-190, -88}, {-190, -78}, {-180, -78}}, color = {0, 0, 127}));
-  connect(HDU.y[9], add_pow.u1) annotation(
-    Line(points = {{-6, 168}, {-58, 168}, {-58, 152}, {-198, 152}, {-198, -114}, {-146, -114}, {-146, -126}, {-150, -126}}, color = {0, 0, 127}));
-  connect(heaPum.P, add_pow.u2) annotation(
-    Line(points = {{-8, -10}, {184, -10}, {184, -112}, {-138, -112}, {-138, -114}, {-144, -114}, {-144, -130}, {-150, -130}}, color = {0, 0, 127}));
-  connect(prod_eheat_TWW.y, add_pow.u3) annotation(
-    Line(points = {{124, 10}, {120, 10}, {120, -32}, {182, -32}, {182, -114}, {-136, -114}, {-136, -134}, {-150, -134}}, color = {0, 0, 127}));
   connect(pump_HP_sou.m_flow_in, prod_mflow_HPsou.y) annotation(
     Line(points = {{10, -26}, {10, -36}, {-40, -36}, {-40, -50}, {-46, -50}}, color = {0, 0, 127}));
   connect(mixingVolume.ports[3], Temp_FH.port) annotation(
@@ -487,18 +517,62 @@ equation
     Line(points = {{118, 116}, {126, 116}, {126, 122}}, color = {0, 0, 127}));
   connect(not_FH_T.y, or1.u2) annotation(
     Line(points = {{86, 116}, {82, 116}, {82, -32}, {-186, -32}, {-186, -46}, {-184, -46}}, color = {255, 0, 255}));
-  connect(add_pow.y, gain_el.u) annotation(
-    Line(points = {{-164, -130}, {-164, -131}, {-168, -131}, {-168, -140}, {-154, -140}, {-154, -146}, {-160, -146}}, color = {0, 0, 127}));
   connect(RL.Pow, gain_el.y) annotation(
     Line(points = {{-176, -130}, {-172, -130}, {-172, -140}, {-182, -140}, {-182, -148}, {-176, -148}, {-176, -146}}, color = {0, 0, 127}));
-  connect(add_pow.y, batteryControl.power_cons) annotation(
-    Line(points = {{-164, -130}, {-166, -130}, {-166, -138}, {-120, -138}}, color = {0, 0, 127}));
   connect(pump_HP_TWW.port_b, TWW.port_HX_1_a) annotation(
     Line(points = {{-30, 100}, {-34, 100}, {-34, 90}, {-40, 90}}, color = {0, 127, 255}));
   connect(TWW.port_HX_1_b, teeJunctionIdeal.port_2) annotation(
     Line(points = {{-40, 88}, {-34, 88}, {-34, 26}, {-74, 26}, {-74, 14}, {-68, 14}}, color = {0, 127, 255}));
+  connect(gain_grid.y, lim_grid.u) annotation(
+    Line(points = {{149, -170}, {145, -170}}, color = {0, 0, 127}));
+  connect(E_eb_kwh.u, E_eb.y) annotation(
+    Line(points = {{111, -142}, {123, -142}}, color = {0, 0, 127}));
+  connect(E_c.y, E_c_kwh.u) annotation(
+    Line(points = {{147, -128}, {141.1, -128}, {141.1, -121}, {129, -121}}, color = {0, 0, 127}));
+  connect(E_g.y, E_eb.u2) annotation(
+    Line(points = {{145, -146}, {137, -146}}, color = {0, 0, 127}));
+  connect(lim_grid.y, E_f.u) annotation(
+    Line(points = {{131, -170}, {123, -170}}, color = {0, 0, 127}));
+  connect(E_c.u1, E_h.y) annotation(
+    Line(points = {{161, -124}, {173, -124}}, color = {0, 0, 127}));
+  connect(E_c.y, E_eb.u1) annotation(
+    Line(points = {{147, -128}, {139, -128}, {139, -138}, {137, -138}}, color = {0, 0, 127}));
+  connect(gain_grid.u, grid_Preal.y) annotation(
+    Line(points = {{163, -170}, {169.2, -170}, {169.2, -171}}, color = {0, 0, 127}));
+  connect(pVSimpleOriented.P, E_g.u) annotation(
+    Line(points = {{26, -156}, {26, -154}, {164, -154}, {164, -146}, {160, -146}}, color = {0, 0, 127}));
+  connect(HDU.y[9], E_h.u) annotation(
+    Line(points = {{-6, 168}, {-10, 168}, {-10, 194}, {198, 194}, {198, -124}, {188, -124}}, color = {0, 0, 127}));
+  connect(E_g_filt.u2, E_g.y) annotation(
+    Line(points = {{108, -130}, {142, -130}, {142, -146}, {146, -146}}, color = {0, 0, 127}));
+  connect(E_g_filt.u1, constant1.y) annotation(
+    Line(points = {{108, -124}, {114, -124}, {114, -136}, {174, -136}, {174, -140}, {180, -140}}, color = {0, 0, 127}));
+  connect(gain_el.u, power_total.y) annotation(
+    Line(points = {{-160, -146}, {-156, -146}, {-156, -136}, {-166, -136}, {-166, -128}, {-160, -128}}, color = {0, 0, 127}));
+  connect(vent_power.y, power_total.u[1]) annotation(
+    Line(points = {{-146, -150}, {-150, -150}, {-150, -140}, {-142, -140}, {-142, -128}, {-150, -128}}, color = {0, 0, 127}));
+  connect(add.y, add1.u1) annotation(
+    Line(points = {{126, -70}, {126, -98}, {114, -98}}, color = {0, 0, 127}));
+  connect(add1.u2, integratorvent.y) annotation(
+    Line(points = {{114, -104}, {170, -104}, {170, -98}, {176, -98}}, color = {0, 0, 127}));
+  connect(add1.y, E_c.u2) annotation(
+    Line(points = {{102, -100}, {98, -100}, {98, -106}, {166, -106}, {166, -132}, {162, -132}}, color = {0, 0, 127}));
+  connect(vent_power.y, integratorvent.u) annotation(
+    Line(points = {{-146, -150}, {-150, -150}, {-150, -182}, {192, -182}, {192, -98}, {190, -98}}, color = {0, 0, 127}));
+  connect(prod_eheat_TWW.y, power_total.u[2]) annotation(
+    Line(points = {{124, 10}, {124, -24}, {88, -24}, {88, -112}, {-144, -112}, {-144, -128}, {-150, -128}}, color = {0, 0, 127}));
+  connect(heaPum.P, power_total.u[3]) annotation(
+    Line(points = {{-8, -10}, {86, -10}, {86, -114}, {-142, -114}, {-142, -128}, {-150, -128}}, color = {0, 0, 127}));
+  connect(HDU.y[9], power_total.u[4]) annotation(
+    Line(points = {{-6, 168}, {-58, 168}, {-58, 150}, {-196, 150}, {-196, -112}, {-148, -112}, {-148, -128}, {-150, -128}}, color = {0, 0, 127}));
+  connect(power_total.y, batteryControl.power_cons) annotation(
+    Line(points = {{-160, -128}, {-162, -128}, {-162, -138}, {-120, -138}}, color = {0, 0, 127}));
+  connect(E_g.y, E_g_kwh.u) annotation(
+    Line(points = {{146, -146}, {144, -146}, {144, -156}, {168, -156}}, color = {0, 0, 127}));
+  connect(E_f.y, E_f_kwh.u) annotation(
+    Line(points = {{110, -170}, {104, -170}}, color = {0, 0, 127}));
   annotation(
-    Diagram(graphics = {Rectangle(origin = {34, 172}, fillColor = {170, 170, 127}, fillPattern = FillPattern.Solid, extent = {{-62, 26}, {62, -26}}), Rectangle(origin = {-99, 88}, fillColor = {170, 213, 255}, fillPattern = FillPattern.Solid, extent = {{95, -56}, {-95, 56}}), Rectangle(origin = {97, 88}, fillColor = {255, 166, 187}, fillPattern = FillPattern.Solid, extent = {{99, -56}, {-99, 56}}), Rectangle(origin = {57, 1}, fillColor = {255, 147, 147}, fillPattern = FillPattern.Solid, extent = {{139, -29}, {-139, 29}}), Rectangle(origin = {-139, -69}, fillColor = {181, 181, 181}, fillPattern = FillPattern.Solid, extent = {{-55, 39}, {55, -39}}), Rectangle(origin = {1, -145}, fillColor = {62, 186, 91}, fillPattern = FillPattern.Solid, extent = {{83, -35}, {-83, 35}}), Rectangle(origin = {141, -145}, fillColor = {204, 142, 255}, fillPattern = FillPattern.Solid, extent = {{-55, 35}, {55, -35}}), Rectangle(origin = {57, -69}, fillColor = {78, 234, 114}, fillPattern = FillPattern.Solid, extent = {{139, -39}, {-139, 39}}), Rectangle(origin = {-139, 1}, fillColor = {207, 207, 207}, fillPattern = FillPattern.Solid, extent = {{-55, 29}, {55, -29}}), Rectangle(origin = {-139, -145}, fillColor = {223, 223, 0}, fillPattern = FillPattern.Solid, extent = {{55, -35}, {-55, 35}}), Rectangle(origin = {-99, 172}, fillColor = {255, 255, 127}, fillPattern = FillPattern.Solid, extent = {{-35, 26}, {35, -26}})}, coordinateSystem(extent = {{-200, -200}, {200, 200}})),
+    Diagram(graphics = {Rectangle(origin = {34, 172}, fillColor = {170, 170, 127}, fillPattern = FillPattern.Solid, extent = {{-62, 26}, {62, -26}}), Rectangle(origin = {-99, 88}, fillColor = {170, 213, 255}, fillPattern = FillPattern.Solid, extent = {{95, -56}, {-95, 56}}), Rectangle(origin = {97, 88}, fillColor = {255, 166, 187}, fillPattern = FillPattern.Solid, extent = {{99, -56}, {-99, 56}}), Rectangle(origin = {57, 1}, fillColor = {255, 147, 147}, fillPattern = FillPattern.Solid, extent = {{139, -29}, {-139, 29}}), Rectangle(origin = {-139, -69}, fillColor = {181, 181, 181}, fillPattern = FillPattern.Solid, extent = {{-55, 39}, {55, -39}}), Rectangle(origin = {1, -145}, fillColor = {62, 186, 91}, fillPattern = FillPattern.Solid, extent = {{83, -35}, {-83, 35}}), Rectangle(origin = {140, -69}, fillColor = {204, 142, 255}, fillPattern = FillPattern.Solid, extent = {{-54, 39}, {54, -39}}), Rectangle(origin = {1, -69}, fillColor = {78, 234, 114}, fillPattern = FillPattern.Solid, extent = {{83, -39}, {-83, 39}}), Rectangle(origin = {-139, 1}, fillColor = {207, 207, 207}, fillPattern = FillPattern.Solid, extent = {{-55, 29}, {55, -29}}), Rectangle(origin = {-139, -145}, fillColor = {223, 223, 0}, fillPattern = FillPattern.Solid, extent = {{55, -35}, {-55, 35}}), Rectangle(origin = {-99, 172}, fillColor = {255, 255, 127}, fillPattern = FillPattern.Solid, extent = {{-35, 26}, {35, -26}}), Rectangle(origin = {140, -145}, fillColor = {255, 170, 0}, fillPattern = FillPattern.Solid, extent = {{-54, 35}, {54, -35}})}, coordinateSystem(extent = {{-200, -200}, {200, 200}})),
     experiment(StartTime = 0, StopTime = 31536000, Tolerance = 1e-6, Interval = 3600),
     Icon(coordinateSystem(extent = {{-200, -200}, {200, 200}})));
 end HDU_Full;

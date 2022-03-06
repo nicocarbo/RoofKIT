@@ -1,17 +1,17 @@
-within RoofKIT.EnergyConcept_HDU.WholeConcept.D6_FinalModels;
+within RoofKIT.EnergyConcept_GG.WholeConcept.SubModels;
 
-model HDU_Electrical
-  Modelica.Blocks.Sources.CombiTimeTable HDU(extrapolation = Modelica.Blocks.Types.Extrapolation.Periodic, fileName = "C:/Users/vp3411/Documents/Programme/Modelica/RoofKIT/roofkit/Resources/BuildingData/HDU/Input_HDU.txt", table = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], tableName = "HDU", tableOnFile = true) annotation(
+model GG_Electrical
+  Modelica.Blocks.Sources.CombiTimeTable HDU(extrapolation = Modelica.Blocks.Types.Extrapolation.Periodic, fileName = "C:/Users/vp3411/Documents/Programme/Modelica/RoofKIT/roofkit/Resources/BuildingData/HDU/HDU_input.txt", table = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], tableName = "HDU", tableOnFile = true) annotation(
     Placement(visible = true, transformation(origin = {87, -21}, extent = {{7, -7}, {-7, 7}}, rotation = 0)));
-  Buildings.Electrical.AC.OnePhase.Loads.Inductive RL( V_nominal = 120, mode = Buildings.Electrical.Types.Load.VariableZ_P_input) annotation(
+  Buildings.Electrical.AC.OnePhase.Loads.Inductive RL(V_nominal = 120, mode = Buildings.Electrical.Types.Load.VariableZ_P_input) annotation(
     Placement(visible = true, transformation(extent = {{-20, -58}, {0, -38}}, rotation = 0)));
   Buildings.Electrical.AC.OnePhase.Sources.Grid grid(V = 220, f = 50) annotation(
     Placement(visible = true, transformation(origin = {-20, 46}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Buildings.Electrical.AC.OnePhase.Conversion.ACDCConverter conv(conversionFactor = 220 / 220, eta = 0.98) annotation(
     Placement(visible = true, transformation(extent = {{-46, -18}, {-66, 2}}, rotation = 0)));
-  Buildings.Electrical.DC.Storage.Battery bat(EMax (displayUnit = "J") = 1.8e+7, SOC_start = 0.9, V_nominal = 220) annotation(
+  Buildings.Electrical.DC.Storage.Battery bat(EMax(displayUnit = "J") = 1.8e+7, SOC_start = 0.9, V_nominal = 220) annotation(
     Placement(visible = true, transformation(extent = {{-108, -22}, {-128, -2}}, rotation = 0)));
-  Buildings.Electrical.DC.Sources.PVSimpleOriented pVSimpleOriented(A = 16, V_nominal = 400, azi (displayUnit = "rad") = -0.7853981633974501, eta = 0.18, lat (displayUnit = "rad") = 0.6579891280018599, til (displayUnit = "rad") = 0.2094395102393195) annotation(
+  Buildings.Electrical.DC.Sources.PVSimpleOriented pVSimpleOriented(A = 16, V_nominal = 400, azi(displayUnit = "rad") = -0.7853981633974501, eta = 0.18, lat(displayUnit = "rad") = 0.6579891280018599, til(displayUnit = "rad") = 0.2094395102393195) annotation(
     Placement(visible = true, transformation(origin = {-70, 68}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Buildings.BoundaryConditions.WeatherData.ReaderTMY3 weaDat(computeWetBulbTemperature = false, filNam = Modelica.Utilities.Files.loadResource("modelica://RoofKIT/Resources/WeatherFiles/DEU_NW_Dusseldorf.AP.104000_TMYx.2004-2018.mos")) annotation(
     Placement(visible = true, transformation(extent = {{-244, 90}, {-224, 110}}, rotation = 0)));
@@ -47,4 +47,4 @@ protected
     Diagram(coordinateSystem(extent = {{-400, -300}, {400, 300}})),
     experiment(StartTime = 0, StopTime = 31536000, Tolerance = 1e-06, Interval = 3600),
     Icon(coordinateSystem(extent = {{-400, -300}, {400, 300}})));
-end HDU_Electrical;
+end GG_Electrical;

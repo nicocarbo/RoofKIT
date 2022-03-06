@@ -1,9 +1,9 @@
-within RoofKIT.EnergyConcept_GG.WholeConcept.SubModels;
+within RoofKIT.EnergyConcept_GG.WholeConcept.FinalModels;
 
-model Thermal_System
-  Real heatflow = -HX_U.y * HX_A.y * (((WW_T_in.y - ((WW_T_in.y - WW_tank.T) * 2.71828 * exp(HX_U.y / (WW_mflow.y * 4200)) + WW_tank.T)) / 2)-WW_tank.T);
-  Real p_DHW = (FirstFloor.y[3] + SecondFloor.y[3] + ThirdFloor.y[3]) / 3600 *4200*(45-10);
-  Real WW_Ausnutzung = heatflow/p_DHW;
+model GG_Full
+  Real heatflow = -HX_U.y * HX_A.y * ((WW_T_in.y - ((WW_T_in.y - WW_tank.T) * 2.71828 * exp(HX_U.y / (WW_mflow.y * 4200)) + WW_tank.T)) / 2 - WW_tank.T);
+  Real p_DHW = (FirstFloor.y[3] + SecondFloor.y[3] + ThirdFloor.y[3]) / 3600 * 4200 * (45 - 10);
+  Real WW_Ausnutzung = heatflow / p_DHW;
   //
   //  Media
   package Medium_Water = Buildings.Media.Water;
@@ -14,7 +14,7 @@ model Thermal_System
   Modelica.Blocks.Sources.CombiTimeTable FirstFloor(fileName = "C:/Users/vp3411/Documents/Programme/Modelica/RoofKIT/roofkit/Resources/BuildingData/GG/FirstFloor.txt", table = [0, 0, 0, 0, 0, 0], tableName = "FirstFloor", tableOnFile = true) annotation(
     Placement(visible = true, transformation(origin = {-341, 129}, extent = {{-7, -7}, {7, 7}}, rotation = 0)));
   Modelica.Blocks.Sources.CombiTimeTable SecondFloor(fileName = "C:/Users/vp3411/Documents/Programme/Modelica/RoofKIT/roofkit/Resources/BuildingData/GG/SecondFloor.txt", table = [0, 0, 0, 0, 0, 0], tableName = "SecondFloor", tableOnFile = true) annotation(
-    Placement(visible = true, transformation(origin = {-319, 129}, extent = {{-7, -7}, {7, 7}}, rotation = 0)));
+    Placement(visible = true, transformation(origin = {-319, 131}, extent = {{-7, -7}, {7, 7}}, rotation = 0)));
   Modelica.Blocks.Sources.CombiTimeTable ThirdFloor(fileName = "C:/Users/vp3411/Documents/Programme/Modelica/RoofKIT/roofkit/Resources/BuildingData/GG/ThirdFloor.txt", table = [0, 0, 0, 0, 0, 0], tableName = "ThirdFloor", tableOnFile = true) annotation(
     Placement(visible = true, transformation(origin = {-299, 129}, extent = {{-7, -7}, {7, 7}}, rotation = 0)));
   //  Umrechnung
@@ -103,7 +103,6 @@ model Thermal_System
     Placement(visible = true, transformation(origin = {-188, 46}, extent = {{-10, -4}, {10, 4}}, rotation = 0)));
   BuildingSystems.Fluid.Sensors.TemperatureTwoPort HX_AW_OUT(redeclare package Medium = Medium_Air, m_flow_nominal = 0.1) annotation(
     Placement(visible = true, transformation(origin = {-114, -46}, extent = {{-10, -4}, {10, 4}}, rotation = -90)));
-
   Modelica.Blocks.Sources.RealExpression third_on_off(y = (-Ex_Brine_IN.T) + TF_Temp.y) annotation(
     Placement(visible = true, transformation(origin = {-325, 71}, extent = {{-21, -7}, {21, 7}}, rotation = 0)));
   Modelica.Blocks.Math.BooleanToReal b2r1 annotation(
@@ -206,15 +205,15 @@ model Thermal_System
     Placement(visible = true, transformation(origin = {-277, -175}, extent = {{-7, -7}, {7, 7}}, rotation = 0)));
   Modelica.Blocks.Math.Add add2 annotation(
     Placement(visible = true, transformation(origin = {44, 30}, extent = {{6, -6}, {-6, 6}}, rotation = 0)));
-  Modelica.Blocks.Sources.RealExpression T_Storage(y = (-WaterTank.T[5]) + 65 + 273.15)  annotation(
+  Modelica.Blocks.Sources.RealExpression T_Storage(y = (-WaterTank.T[5]) + 65 + 273.15) annotation(
     Placement(visible = true, transformation(origin = {382, 70}, extent = {{24, -10}, {-24, 10}}, rotation = 0)));
-  Modelica.Blocks.Sources.RealExpression realExpression(y = ST_T_OUT.T)  annotation(
+  Modelica.Blocks.Sources.RealExpression realExpression(y = ST_T_OUT.T) annotation(
     Placement(visible = true, transformation(origin = {385, 128}, extent = {{25, -8}, {-25, 8}}, rotation = 0)));
-  Modelica.Blocks.Logical.GreaterThreshold Brine_min(threshold = (-10) + 273.15)  annotation(
+  Modelica.Blocks.Logical.GreaterThreshold Brine_min(threshold = (-10) + 273.15) annotation(
     Placement(visible = true, transformation(origin = {324, 128}, extent = {{8, -8}, {-8, 8}}, rotation = 0)));
-  Modelica.Blocks.Sources.RealExpression Estimated_COP_BW(y = ((-6.0831) -0.3793*realExpression2.y/289.15+7.473*ST_T_OUT.T/283.15) * 3533.9 /((7.7150 + 7.0296 * realExpression2.y / 289.15 + 1.6481 * ST_T_OUT.T / 283.15) * 449.1) ) annotation(
+  Modelica.Blocks.Sources.RealExpression Estimated_COP_BW(y = ((-6.0831) - 0.3793 * realExpression2.y / 289.15 + 7.473 * ST_T_OUT.T / 283.15) * 3533.9 / ((7.7150 + 7.0296 * realExpression2.y / 289.15 + 1.6481 * ST_T_OUT.T / 283.15) * 449.1)) annotation(
     Placement(visible = true, transformation(origin = {92, 276}, extent = {{-34, -8}, {34, 8}}, rotation = 0)));
-  Modelica.Blocks.Sources.RealExpression Estimated_COP_AW(y=((-1.24) -1.24*realExpression3.y/326.15+6.28*HX_AW_OUT.T/291.15) * 77000 /((-5.55 + 5.08 * realExpression3.y / 326.15 + 1.01 * HX_AW_OUT.T / 291.15) * 18000)) annotation(
+  Modelica.Blocks.Sources.RealExpression Estimated_COP_AW(y = ((-1.24) - 1.24 * realExpression3.y / 326.15 + 6.28 * HX_AW_OUT.T / 291.15) * 77000 / (((-5.55) + 5.08 * realExpression3.y / 326.15 + 1.01 * HX_AW_OUT.T / 291.15) * 18000)) annotation(
     Placement(visible = true, transformation(origin = {92, 262}, extent = {{-34, -8}, {34, 8}}, rotation = 0)));
   Modelica.Blocks.Logical.Hysteresis LowEnergy(uHigh = 18, uLow = 13) annotation(
     Placement(visible = true, transformation(origin = {326, 70}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
@@ -224,11 +223,11 @@ model Thermal_System
     Placement(visible = true, transformation(origin = {350, -92}, extent = {{24, -10}, {-24, 10}}, rotation = 0)));
   Modelica.Blocks.Logical.Hysteresis hysteresis1(uHigh = 18, uLow = 8) annotation(
     Placement(visible = true, transformation(origin = {300, -92}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
-  Buildings.Fluid.MixingVolumes.MixingVolume cool(redeclare package Medium = Medium_Brine, V = 1, m_flow_nominal = 1, nPorts=2)  annotation(
+  Buildings.Fluid.MixingVolumes.MixingVolume cool(redeclare package Medium = Medium_Brine, V = 1, m_flow_nominal = 1, nPorts = 2) annotation(
     Placement(visible = true, transformation(origin = {-44, 118}, extent = {{-4, -4}, {4, 4}}, rotation = 180)));
   Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow1 annotation(
     Placement(visible = true, transformation(origin = {5, 117}, extent = {{5, -5}, {-5, 5}}, rotation = 0)));
-  Modelica.Blocks.Math.Gain gain(k = -2000)  annotation(
+  Modelica.Blocks.Math.Gain gain(k = -2000) annotation(
     Placement(visible = true, transformation(origin = {17, 117}, extent = {{3, -3}, {-3, 3}}, rotation = 0)));
   Modelica.Blocks.Logical.GreaterThreshold greaterThreshold(threshold = 95 + 273.15) annotation(
     Placement(visible = true, transformation(origin = {37, 117}, extent = {{3, -3}, {-3, 3}}, rotation = 0)));
@@ -236,8 +235,32 @@ model Thermal_System
     Placement(visible = true, transformation(origin = {27, 117}, extent = {{3, -3}, {-3, 3}}, rotation = 0)));
   Modelica.Blocks.Sources.RealExpression realExpression5(y = ST_T_OUT.T) annotation(
     Placement(visible = true, transformation(origin = {54, 116}, extent = {{8, -4}, {-8, 4}}, rotation = 0)));
- Modelica.Blocks.Sources.RealExpression realExpression7(y = (DHW.y*T_ColdWater.y+Heating.y*add1.y)/add2.y) annotation(
+  Modelica.Blocks.Sources.RealExpression realExpression7(y = (DHW.y * T_ColdWater.y + Heating.y * add1.y) / add2.y) annotation(
     Placement(visible = true, transformation(origin = {120, -31}, extent = {{38, -9}, {-38, 9}}, rotation = 0)));
+  Buildings.Electrical.AC.OnePhase.Sources.PVSimpleOriented pvRoof(A = 10, V_nominal = 120, azi(displayUnit = "rad") = -0.78539816339745, lat(displayUnit = "rad") = 0.65798912800186, til(displayUnit = "rad") = 0.34906585039887) annotation(
+    Placement(visible = true, transformation(extent = {{-144, -252}, {-124, -232}}, rotation = 0)));
+  Buildings.Electrical.AC.OnePhase.Sources.PVSimpleOriented pvFacade(A = 10, V_nominal = 120, azi(displayUnit = "rad") = -0.78539816339745, lat(displayUnit = "rad") = 0.65798912800186, til(displayUnit = "rad") = 0.34906585039887) annotation(
+    Placement(visible = true, transformation(extent = {{-60, -222}, {-40, -202}}, rotation = 0)));
+  Buildings.Electrical.AC.OnePhase.Sources.PVSimpleOriented pvSolarTree(A = 10, V_nominal = 120, azi(displayUnit = "rad") = -0.78539816339745, lat(displayUnit = "rad") = 0.65798912800186, til(displayUnit = "rad") = 0.34906585039887) annotation(
+    Placement(visible = true, transformation(extent = {{-66, -264}, {-46, -244}}, rotation = 0)));
+  Buildings.BoundaryConditions.WeatherData.ReaderTMY3 weaDat1(filNam = ModelicaServices.ExternalReferences.loadResource("modelica://RoofKIT/Resources/WeatherFiles/DEU_NW_Dusseldorf.AP.104000_TMYx.2004-2018.mos")) annotation(
+    Placement(visible = true, transformation(origin = {-280, -220}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Buildings.Electrical.AC.OnePhase.Loads.Inductive RL(P_nominal = -2000, V_nominal = 120, mode = Buildings.Electrical.Types.Load.VariableZ_y_input) annotation(
+    Placement(visible = true, transformation(extent = {{20, -266}, {40, -246}}, rotation = 0)));
+  Modelica.Blocks.Sources.Constant load(k = 0.5) annotation(
+    Placement(visible = true, transformation(extent = {{78, -266}, {58, -246}}, rotation = 0)));
+  Modelica.Blocks.Sources.Pulse pow(amplitude = 1000, offset = -500, period = 1200, width = 50) annotation(
+    Placement(visible = true, transformation(origin = {322, -160}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
+  Buildings.Electrical.AC.OnePhase.Sources.FixedVoltage fixVol(V = 120, f = 60) annotation(
+    Placement(visible = true, transformation(extent = {{188, -238}, {208, -218}}, rotation = 0)));
+  Buildings.Electrical.AC.OnePhase.Storage.Battery bat_ideal(EMax = 749999.88, SOC_start = 0.5, V_nominal = 120, etaCha = 1, etaDis = 1, eta_DCAC = 1) annotation(
+    Placement(visible = true, transformation(extent = {{250, -208}, {270, -188}}, rotation = 0)));
+  Modelica.Blocks.Sources.RealExpression elecCons_1(y = FirstFloor.y[4]) annotation(
+    Placement(visible = true, transformation(origin = {365, -270}, extent = {{21, -8}, {-21, 8}}, rotation = 0)));
+  Modelica.Blocks.Sources.RealExpression elecCons_2(y = SecondFloor.y[4]) annotation(
+    Placement(visible = true, transformation(origin = {303, -242}, extent = {{21, -8}, {-21, 8}}, rotation = 0)));
+  Modelica.Blocks.Sources.RealExpression elecCons_3(y = ThirdFloor.y[4]) annotation(
+    Placement(visible = true, transformation(origin = {239, -272}, extent = {{21, -8}, {-21, 8}}, rotation = 0)));
 equation
   connect(hex_down.port_b1, FirstSecond.ports[1]) annotation(
     Line(points = {{-194, -16.8}, {-200, -16.8}, {-200, -7}, {-214, -7}}, color = {0, 127, 255}));
@@ -253,9 +276,9 @@ equation
     Line(points = {{-4, -8}, {2, -8}}, color = {0, 127, 255}));
   connect(T_SUP.port_b, RoomHeating_IN.ports[1]) annotation(
     Line(points = {{16, -8}, {20, -8}}, color = {0, 127, 255}));
- connect(T_SUP.T, add1.u2) annotation(
+  connect(T_SUP.T, add1.u2) annotation(
     Line(points = {{9, -1.4}, {9, 4}, {33, 4}}, color = {0, 0, 127}));
- connect(c_SUP.y, add1.u1) annotation(
+  connect(c_SUP.y, add1.u1) annotation(
     Line(points = {{8.4, 12}, {33, 12}}, color = {0, 0, 127}));
   connect(WeatherData.weaBus, thermalCollector.WeaBusWeaPar) annotation(
     Line(points = {{-360, 128}, {-135, 128}, {-135, 86}}, color = {255, 204, 51}, pattern = LinePattern.None, thickness = 0.5));
@@ -295,11 +318,11 @@ equation
     Line(points = {{-148, 42}, {-120, 42}}, color = {0, 127, 255}));
   connect(BW_Heatpump.port_a2, val2.port_2) annotation(
     Line(points = {{-92, 41.6}, {-18, 41.6}, {-18, 87.6}}, color = {0, 127, 255}));
- connect(pump_AW1.port_a, WaterTank.port_a1) annotation(
+  connect(pump_AW1.port_a, WaterTank.port_a1) annotation(
     Line(points = {{-88, -86}, {-82, -86}, {-82, -36}, {-67.5, -36}}, color = {0, 127, 255}));
- connect(WaterTank.port_a2, pump_SUP.port_a) annotation(
+  connect(WaterTank.port_a2, pump_SUP.port_a) annotation(
     Line(points = {{-46.5, -7.6}, {-31.5, -7.6}, {-31.5, -6.8}, {-16.5, -6.8}}, color = {0, 127, 255}));
- connect(WaterTank.port_b2, pump_RET.port_b) annotation(
+  connect(WaterTank.port_b2, pump_RET.port_b) annotation(
     Line(points = {{-46.5, -36.4}, {-41.5, -36.4}, {-41.5, -36}, {-6, -36}}, color = {0, 127, 255}));
   connect(bou1.ports[1], pump_AW1.port_a) annotation(
     Line(points = {{-80, -86}, {-88, -86}}, color = {0, 127, 255}));
@@ -335,7 +358,7 @@ equation
     Line(points = {{-20.5, 181}, {-129, 181}, {-129, 132}}, color = {0, 0, 127}));
   connect(const.y, switch2.u1) annotation(
     Line(points = {{21.5, 191}, {6, 191}, {6, 185}, {-9, 185}}, color = {0, 0, 127}));
- connect(WaterTank.port_a1, pump_BW.port_a) annotation(
+  connect(WaterTank.port_a1, pump_BW.port_a) annotation(
     Line(points = {{-67.5, -36.4}, {-102, -36.4}, {-102, 9.91834e-05}, {-108, 9.91834e-05}}, color = {0, 127, 255}));
   connect(BW_mflow_source.y, pump_BW.m_flow_in) annotation(
     Line(points = {{-72.6, 16}, {-114, 16}, {-114, 5}}, color = {0, 0, 127}));
@@ -345,13 +368,13 @@ equation
     Line(points = {{31.9, 75}, {-144, 75}, {-144, 26}, {-122, 26}}, color = {0, 0, 127}));
   connect(AW_Heatpump.TSet, realExpression3.y) annotation(
     Line(points = {{-159.96, -76.9}, {-176, -76.9}, {-176, -96.9}, {40.04, -96.9}}, color = {0, 0, 127}));
- connect(BW_Heatpump.port_b1, WaterTank.port_b1) annotation(
+  connect(BW_Heatpump.port_b1, WaterTank.port_b1) annotation(
     Line(points = {{-92, 28.4}, {-86, 28.4}, {-86, -7.6}, {-68, -7.6}}, color = {0, 127, 255}));
   connect(pump_BW.port_b, BW_T_OUT.port_a) annotation(
     Line(points = {{-120, 0}, {-130, 0}, {-130, 8}}, color = {0, 127, 255}));
   connect(BW_T_OUT.port_b, BW_Heatpump.port_a1) annotation(
     Line(points = {{-130, 20}, {-130, 28}, {-120, 28}}, color = {0, 127, 255}));
- connect(AW_Heatpump.port_b1, WaterTank.port_b1) annotation(
+  connect(AW_Heatpump.port_b1, WaterTank.port_b1) annotation(
     Line(points = {{-130, -73.6}, {-86, -73.6}, {-86, -7.2}, {-68, -7.2}}, color = {0, 127, 255}));
   connect(AW_Heatpump.port_a1, AW_T_OUT.port_b) annotation(
     Line(points = {{-158, -73.6}, {-170, -73.6}, {-170, -85.6}, {-122, -85.6}}, color = {0, 127, 255}));
@@ -365,27 +388,27 @@ equation
     Line(points = {{21.5, 135}, {15, 135}}, color = {0, 0, 127}));
   connect(test2.ports[1], pump_ST.port_a) annotation(
     Line(points = {{-114, 111}, {-122, 111}, {-122, 121}}, color = {0, 127, 255}));
- connect(val1.port_3, WaterTank.port_HX_2_a) annotation(
+  connect(val1.port_3, WaterTank.port_HX_2_a) annotation(
     Line(points = {{-155, 92}, {-43, 92}, {-43, -14}, {-47, -14}}, color = {0, 127, 255}));
- connect(WaterTank.port_HX_2_b, val2.port_3) annotation(
+  connect(WaterTank.port_HX_2_b, val2.port_3) annotation(
     Line(points = {{-46.5, -17.2}, {-34.5, -17.2}, {-34.5, 92.8}, {-26.5, 92.8}}, color = {0, 127, 255}));
   connect(hysteresis.y, booleanToReal.u) annotation(
     Line(points = {{-249.5, -99}, {-243, -99}}, color = {255, 0, 255}));
- connect(booleanToReal.y, gain3.u) annotation(
+  connect(booleanToReal.y, gain3.u) annotation(
     Line(points = {{-231.5, -99}, {-221, -99}}, color = {0, 0, 127}));
   connect(add.y, hysteresis.u) annotation(
     Line(points = {{-271.4, -98}, {-260.4, -98}}, color = {0, 0, 127}));
- connect(WaterTank.T[1], add.u1) annotation(
+  connect(WaterTank.T[1], add.u1) annotation(
     Line(points = {{-68.1, -12.4}, {-120.1, -12.4}, {-120.1, -40.4}, {-294.1, -40.4}, {-294.1, -94.4}, {-285.1, -94.4}}, color = {0, 0, 127}));
- connect(gain3.y, pump_ww.m_flow_in) annotation(
+  connect(gain3.y, pump_ww.m_flow_in) annotation(
     Line(points = {{-209.5, -99}, {-193.5, -99}, {-193.5, -128}}, color = {0, 0, 127}));
   connect(WW_tank.ports[1], pump_ww.port_a) annotation(
     Line(points = {{-240, -134}, {-202, -134}}, color = {0, 127, 255}));
   connect(t_wwtank.y, add.u2) annotation(
     Line(points = {{-299.9, -102}, {-285.9, -102}}, color = {0, 0, 127}));
- connect(WaterTank.port_HX_1_a, pump_ww.port_b) annotation(
+  connect(WaterTank.port_HX_1_a, pump_ww.port_b) annotation(
     Line(points = {{-46.5, -28.4}, {-26.5, -28.4}, {-26.5, -134.4}, {-186.5, -134.4}}, color = {0, 127, 255}));
- connect(WaterTank.port_HX_1_b, WW_tank.ports[2]) annotation(
+  connect(WaterTank.port_HX_1_b, WW_tank.ports[2]) annotation(
     Line(points = {{-46.5, -31.6}, {-36.5, -31.6}, {-36.5, -145.6}, {-240.5, -145.6}, {-240.5, -133.6}}, color = {0, 127, 255}));
   connect(WW_tank.ports[3], boundary.ports[1]) annotation(
     Line(points = {{-240, -134}, {-230, -134}, {-230, -124}, {-220, -124}}, color = {0, 127, 255}));
@@ -459,8 +482,12 @@ equation
     Line(points = {{-58, 122}, {-44, 122}}, color = {0, 127, 255}));
   connect(cool.ports[2], st_ZeroFlow2.port_1) annotation(
     Line(points = {{-44, 122}, {-30, 122}}, color = {0, 127, 255}));
- connect(realExpression7.y, RoomHeating_OUT.T_in) annotation(
+  connect(realExpression7.y, RoomHeating_OUT.T_in) annotation(
     Line(points = {{78, -31}, {62, -31}, {62, -34}, {44, -34}}, color = {0, 0, 127}));
+  connect(fixVol.terminal, bat_ideal.terminal) annotation(
+    Line(points = {{208, -228}, {230, -228}, {230, -198}, {250, -198}}, color = {0, 120, 120}));
+  connect(pow.y, bat_ideal.P) annotation(
+    Line(points = {{311, -160}, {260, -160}, {260, -188}}, color = {0, 0, 127}));
   annotation(
     Diagram(coordinateSystem(extent = {{-400, -300}, {400, 300}}), graphics = {Text(origin = {113, 136}, extent = {{73, -12}, {-73, 12}}, textString = "If BW-HP on -> fixed massflow from HP 
  If BW-HP out -> PD controll for fixed temperature output"), Text(origin = {153, 203}, extent = {{223, -9}, {-223, 9}}, textString = "If BW-HP on -> valve open 
@@ -469,9 +496,9 @@ equation
 set temperature difference"), Text(origin = {-323, -135}, extent = {{-29, 13}, {29, -13}}, textString = "VDI 2055 Ausg. 1994 - Wärme- und Kälteschutz für betriebs- und haustechnische Anlagen"), Text(origin = {-335, -40}, extent = {{-41, 10}, {41, -10}}, textString = "Temperature of air mixture 
  mass flow"), Text(origin = {-291, 101}, extent = {{-75, 13}, {75, -13}}, textString = "If T at HX brine inlet is lower 
 than room temperature in thrid floor 
- -> heat exchange"), Rectangle(origin = {27, 155}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-9, 7}, {9, -7}}), Rectangle(origin = {56, 76}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-28, 6}, {28, -6}}), Rectangle(origin = {-67, 15}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-9, 7}, {9, -7}}), Rectangle(origin = {27, 135}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-9, 7}, {9, -7}}), Rectangle(origin = {-217, -99}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-9, 7}, {9, -7}}), Rectangle(origin = {-269, -146}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-25, 14}, {25, -14}}), Text(origin = {-155, -185}, extent = {{-111, 5}, {111, -5}}, textString = "Temperaturunterschied zwischen Zapftemperatur und WasteWater Temperatur"), Rectangle(origin = {51, -112}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-19, 6}, {19, -6}}), Rectangle(origin = {56, 76}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-28, 6}, {28, -6}}), Rectangle(origin = {56, 76}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-28, 6}, {28, -6}}), Rectangle(origin = {56, 76}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-28, 6}, {28, -6}}), Rectangle(origin = {64, -96}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-28, 6}, {28, -6}}), Text(origin = {90, -73}, extent = {{-98, 31}, {98, -31}}, textString = "Set Temperatur, eingestellt nach konstanter Leistung 
+ -> heat exchange"), Rectangle(origin = {27, 155}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-9, 7}, {9, -7}}), Rectangle(origin = {56, 76}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-28, 6}, {28, -6}}), Rectangle(origin = {-67, 15}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-9, 7}, {9, -7}}), Rectangle(origin = {27, 135}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-9, 7}, {9, -7}}), Rectangle(origin = {-217, -99}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-9, 7}, {9, -7}}), Rectangle(origin = {-269, -146}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-25, 14}, {25, -14}}), Text(origin = {-141, -177}, extent = {{-111, 5}, {111, -5}}, textString = "Temperaturunterschied zwischen Zapftemperatur und WasteWater Temperatur"), Rectangle(origin = {51, -112}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-19, 6}, {19, -6}}), Rectangle(origin = {56, 76}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-28, 6}, {28, -6}}), Rectangle(origin = {56, 76}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-28, 6}, {28, -6}}), Rectangle(origin = {56, 76}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-28, 6}, {28, -6}}), Rectangle(origin = {64, -96}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-28, 6}, {28, -6}}), Text(origin = {100, -73}, extent = {{-98, 31}, {98, -31}}, textString = "Set Temperatur, eingestellt nach konstanter Leistung 
  möglich wäre Leistung nach Koeffizienten aus Regression zu ermitteln 
  damit wäre T_set = f(T_source, T_Load, Q_load, hersteller)"), Rectangle(origin = {-265, 131}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-23, 11}, {23, -11}}), Rectangle(origin = {-105, 35}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-23, 11}, {23, -11}}), Rectangle(origin = {-166, 55}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-12, 7}, {12, -7}}), Rectangle(origin = {-180, -21}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-12, 7}, {12, -7}}), Rectangle(origin = {-57, -23}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-17, 25}, {17, -25}}), Rectangle(origin = {-83, 122}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-15, 12}, {15, -12}}), Rectangle(origin = {-145, -67}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-23, 11}, {23, -11}}), Rectangle(origin = {-240, -125}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-12, 7}, {12, -7}})}),
     experiment(StartTime = 0, StopTime = 31536000, Tolerance = 1e-06, Interval = 3600),
     Icon(coordinateSystem(extent = {{-400, -300}, {400, 300}})));
-end Thermal_System;
+end GG_Full;
