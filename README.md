@@ -4,6 +4,6 @@ The models have been developed and tested using openModelica 1.18, but can be ru
 
 This package requires the following libraries;
 - Modelica standard library 3.2.3
-- Buildings 7.0.0
+- Buildings 8.0.0
 - AixLib 0.9.0
 - BuildingSystems 1.7.0
