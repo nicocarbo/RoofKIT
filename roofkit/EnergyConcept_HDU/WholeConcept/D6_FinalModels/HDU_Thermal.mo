@@ -92,7 +92,7 @@ model HDU_Thermal
     Placement(visible = true, transformation(origin = {178, -128}, extent = {{6, -6}, {-6, 6}}, rotation = 0)));
   Modelica.Blocks.Sources.Constant massflow_solCol(k = mSolCol_flow_nominal) annotation(
     Placement(visible = true, transformation(origin = {-70, -126}, extent = {{-4, -4}, {4, 4}}, rotation = 0)));
-  Modelica.Blocks.Sources.CombiTimeTable HDU(extrapolation = Modelica.Blocks.Types.Extrapolation.Periodic, fileName = "C:/Users/vp3411/Documents/Programme/Modelica/RoofKIT/roofkit/Resources/BuildingData/HDU/HDU_input.txt", table = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], tableName = "HDU", tableOnFile = true) annotation(
+  Modelica.Blocks.Sources.CombiTimeTable HDU(extrapolation = Modelica.Blocks.Types.Extrapolation.Periodic, fileName = "C:/Users/vp3411/Documents/Programme/Modelica/RoofKIT/roofkit/Resources/BuildingData/HDU/Input_HDU.txt", table = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], tableName = "HDU", tableOnFile = true) annotation(
     Placement(visible = true, transformation(origin = {4, 168}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
   Modelica.Blocks.Math.Gain gain_FH(k = -54) annotation(
     Placement(visible = true, transformation(origin = {30, 106}, extent = {{-8, -8}, {8, 8}}, rotation = 0)));
