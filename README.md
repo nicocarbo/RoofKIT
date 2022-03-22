@@ -1,4 +1,4 @@
-The RoofKIT library was developed to do the simulations for the Team RoofKIT () in the Solar Decathlon Europe 2021/2022 competition. 
+The RoofKIT library was developed to do the simulations for the Team RoofKIT (Karlsruhe Institute of Technology) in the Solar Decathlon Europe 2021/2022 competition. 
 
 The models have been developed and tested using openModelica 1.18, but can be run under other modelica-related environments (i.e. Dymola).
 
