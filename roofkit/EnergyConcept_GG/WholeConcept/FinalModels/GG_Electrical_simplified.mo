@@ -54,10 +54,10 @@ model GG_Electrical_simplified
     Placement(visible = true, transformation(origin = {78, 52}, extent = {{6, -6}, {-6, 6}}, rotation = 0)));
   Modelica.Blocks.Math.MultiSum Heat_sum(nu = 3) annotation(
     Placement(visible = true, transformation(origin = {20, 72}, extent = {{6, -6}, {-6, 6}}, rotation = 0)));
-  Modelica.Blocks.Math.Gain Vent_SPF(k = 0.4) annotation(
+  Modelica.Blocks.Math.Gain Vent_SPF(k = 0.35) annotation(
     Placement(visible = true, transformation(origin = {-90, 68}, extent = {{-6, -6}, {6, 6}}, rotation = 0)));
-  Modelica.Blocks.Math.MultiSum Vent_sum(nu = 3) annotation(
-    Placement(visible = true, transformation(origin = {-118, 68}, extent = {{-6, -6}, {6, 6}}, rotation = 0)));
+  Modelica.Blocks.Math.MultiSum Vent_sum(nu = 2) annotation(
+    Placement(visible = true, transformation(origin = {-122, 68}, extent = {{-6, -6}, {6, 6}}, rotation = 0)));
   Modelica.Blocks.Math.Gain DHW_energy(k = 4200 * 30 / 3600) annotation(
     Placement(visible = true, transformation(origin = {56, 52}, extent = {{6, -6}, {-6, 6}}, rotation = 0)));
   Modelica.Blocks.Sources.Constant Mobility(k = 0.1585365) annotation(
@@ -104,6 +104,8 @@ model GG_Electrical_simplified
     Placement(visible = true, transformation(origin = {33, 143}, extent = {{-7, -7}, {7, 7}}, rotation = 0)));
   Modelica.Blocks.Math.Division division annotation(
     Placement(visible = true, transformation(origin = {-25, 55}, extent = {{7, -7}, {-7, 7}}, rotation = 0)));
+  Modelica.Blocks.Sources.Constant constant1(k = -4500) annotation(
+    Placement(visible = true, transformation(origin = {-142, 56}, extent = {{-4, -4}, {4, 4}}, rotation = 0)));
 equation
 //Connections
 //WeatherBus
@@ -138,7 +140,7 @@ equation
   connect(batteryControl_Contest.PV_power, PV_sum.y) annotation(
     Line(points = {{-96, -110}, {-104, -110}, {-104, -114}, {-36, -114}, {-36, -106}, {-20, -106}}, color = {0, 0, 127}));
   connect(Vent_sum.y, Vent_SPF.u) annotation(
-    Line(points = {{-110, 68}, {-98, 68}}, color = {0, 0, 127}));
+    Line(points = {{-115, 68}, {-98, 68}}, color = {0, 0, 127}));
   connect(Vent_SPF.y, var_load.u[1]) annotation(
     Line(points = {{-84, 68}, {-66, 68}, {-66, -28}, {-84, -28}}, color = {0, 0, 127}));
   connect(DHW_sum.y, DHW_energy.u) annotation(
@@ -229,28 +231,26 @@ equation
     Line(points = {{-32, 56}, {-34, 56}, {-34, 40}, {111, 40}}, color = {0, 0, 127}));
   connect(FirstFloor.y[2], Heat_sum.u[1]) annotation(
     Line(points = {{-2, 126}, {-4, 126}, {-4, 94}, {28, 94}, {28, 72}, {26, 72}}, color = {0, 0, 127}));
-  connect(SecondFloor.y[2], Heat_sum.u[2]) annotation(
+  connect(SecondFloor.y[0], Heat_sum.u[2]) annotation(
     Line(points = {{26, 126}, {30, 126}, {30, 72}, {26, 72}}, color = {0, 0, 127}));
-  connect(ThirdFloor.y[2], Heat_sum.u[3]) annotation(
+  connect(ThirdFloor.y[0], Heat_sum.u[3]) annotation(
     Line(points = {{52, 126}, {44, 126}, {44, 72}, {26, 72}}, color = {0, 0, 127}));
   connect(FirstFloor.y[3], DHW_sum.u[1]) annotation(
     Line(points = {{-2, 126}, {0, 126}, {0, 86}, {96, 86}, {96, 52}, {84, 52}}, color = {0, 0, 127}));
-  connect(SecondFloor.y[3], DHW_sum.u[2]) annotation(
+  connect(SecondFloor.y[1], DHW_sum.u[2]) annotation(
     Line(points = {{26, 126}, {34, 126}, {34, 88}, {98, 88}, {98, 52}, {84, 52}}, color = {0, 0, 127}));
-  connect(ThirdFloor.y[3], DHW_sum.u[3]) annotation(
+  connect(ThirdFloor.y[1], DHW_sum.u[3]) annotation(
     Line(points = {{52, 126}, {62, 126}, {62, 82}, {104, 82}, {104, 52}, {84, 52}}, color = {0, 0, 127}));
   connect(FirstFloor.y[5], Vent_sum.u[1]) annotation(
-    Line(points = {{-2, 126}, {-4, 126}, {-4, 88}, {-136, 88}, {-136, 68}, {-124, 68}}, color = {0, 0, 127}));
-  connect(SecondFloor.y[5], Vent_sum.u[2]) annotation(
-    Line(points = {{26, 126}, {24, 126}, {24, 90}, {-130, 90}, {-130, 68}, {-124, 68}}, color = {0, 0, 127}));
-  connect(ThirdFloor.y[5], Vent_sum.u[3]) annotation(
-    Line(points = {{52, 126}, {54, 126}, {54, 86}, {-140, 86}, {-140, 68}, {-124, 68}}, color = {0, 0, 127}));
+    Line(points = {{-2, 126}, {-4, 126}, {-4, 88}, {-136, 88}, {-136, 68}, {-128, 68}}, color = {0, 0, 127}));
   connect(FirstFloor.y[4], EE_house.u[1]) annotation(
     Line(points = {{-2, 126}, {-4, 126}, {-4, 76}, {-74, 76}, {-74, 6}, {-80, 6}}, color = {0, 0, 127}));
-  connect(SecondFloor.y[4], EE_house.u[2]) annotation(
+  connect(SecondFloor.y[2], EE_house.u[2]) annotation(
     Line(points = {{26, 126}, {28, 126}, {28, 94}, {-70, 94}, {-70, 6}, {-80, 6}}, color = {0, 0, 127}));
-  connect(ThirdFloor.y[4], EE_house.u[3]) annotation(
+  connect(ThirdFloor.y[2], EE_house.u[3]) annotation(
     Line(points = {{52, 126}, {50, 126}, {50, 94}, {-70, 94}, {-70, 6}, {-80, 6}}, color = {0, 0, 127}));
+  connect(Vent_sum.u[2], constant1.y) annotation(
+    Line(points = {{-128, 68}, {-132, 68}, {-132, 56}, {-138, 56}}, color = {0, 0, 127}));
   annotation(
     Diagram(graphics = {Rectangle(origin = {36, 126}, fillColor = {170, 170, 127}, fillPattern = FillPattern.Solid, extent = {{-62, 26}, {62, -26}}), Rectangle(origin = {-112, -122}, fillColor = {223, 223, 0}, fillPattern = FillPattern.Solid, extent = {{66, -40}, {-66, 40}}), Rectangle(origin = {-97, 126}, fillColor = {255, 255, 127}, fillPattern = FillPattern.Solid, extent = {{-35, 26}, {35, -26}}), Rectangle(origin = {-95, -30}, fillColor = {78, 234, 114}, fillPattern = FillPattern.Solid, extent = {{99, -50}, {-99, 50}}), Rectangle(origin = {101, -30}, fillColor = {204, 142, 255}, fillPattern = FillPattern.Solid, extent = {{-93, 50}, {93, -50}})}, coordinateSystem(extent = {{-200, -200}, {200, 200}})),
     experiment(StartTime = 0, StopTime = 31536000, Tolerance = 1e-6, Interval = 3600),
