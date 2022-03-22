@@ -18,7 +18,8 @@ record WATERKOTTE_EcoTouch_Ai =
       Q_flow = -55680.00, 
       P = 14244.44, 
       coeQ = {0, 0, 0, 0.0, 0.0}, 
-      coeP = {0, 0, 0, 0.0, 0.0})) annotation(
+      coeP = {0, 0, 0, 0.0, 0.0})) 
+  annotation(
     Documentation(info = "<html>
       <p>
       Company: Waterkotte <br/>

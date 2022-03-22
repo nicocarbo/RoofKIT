@@ -19,5 +19,13 @@ model HX_Flow2Heat
     Placement(visible = true, transformation(origin = {-117, -25}, extent = {{-5, -5}, {5, 5}}, rotation = 0)));
 equation
 
-
+annotation(Documentation(info = "<html><p>
+Model for the greywater heat recovery</html>", revisions = "<html>
+<ul>
+<li>
+January 08, 2022 by Moritz Bühler:<br/>
+First implementation. Parametrization of model incomplete. Documentation incomplete. 
+</li>
+</ul>
+</html>"));
 end HX_Flow2Heat;

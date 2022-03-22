@@ -500,5 +500,19 @@ than room temperature in thrid floor
  möglich wäre Leistung nach Koeffizienten aus Regression zu ermitteln 
  damit wäre T_set = f(T_source, T_Load, Q_load, hersteller)"), Rectangle(origin = {-265, 131}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-23, 11}, {23, -11}}), Rectangle(origin = {-105, 35}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-23, 11}, {23, -11}}), Rectangle(origin = {-166, 55}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-12, 7}, {12, -7}}), Rectangle(origin = {-180, -21}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-12, 7}, {12, -7}}), Rectangle(origin = {-57, -23}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-17, 25}, {17, -25}}), Rectangle(origin = {-83, 122}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-15, 12}, {15, -12}}), Rectangle(origin = {-145, -67}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-23, 11}, {23, -11}}), Rectangle(origin = {-240, -125}, fillColor = {0, 255, 0}, fillPattern = FillPattern.Solid, extent = {{-12, 7}, {12, -7}})}),
     experiment(StartTime = 0, StopTime = 31536000, Tolerance = 1e-06, Interval = 3600),
+			Documentation(info = "<html><p>
+This model calculates the whole energy balance of the Design Challenge for a full year. Both thermal and electrical models are included List of assumptions must be completed here.</p>
+</html>", revisions = "<html>
+<ul>
+<li>
+January 28, 2022 by Nicolas Carbonare:<br/>
+Added first implementation of electrical model. Parametrization of model incomplete. Documentation incomplete. 
+</li>
+<li>
+January 08, 2022 by Moritz Bühler:<br/>
+First implementation of thermal model. Parametrization of model incomplete. Documentation incomplete. 
+</li>
+</ul>
+</html>"),
     Icon(coordinateSystem(extent = {{-400, -300}, {400, 300}})));
 end GG_Full;

@@ -46,5 +46,20 @@ protected
   annotation(
     Diagram(coordinateSystem(extent = {{-400, -300}, {400, 300}})),
     experiment(StartTime = 0, StopTime = 31536000, Tolerance = 1e-06, Interval = 3600),
+	Documentation(info = "<html><p>This model calculates the whole electrical energy balance of the House Demonstration Unit for a full year. List of assumptions:</p>
+<li>
+Electrical energy consumption of appliances was obtained from the BDEW load profiles. 
+</li>
+<li>
+Self-developed battery charging controller. 
+</li>
+</html>", revisions = "<html>
+<ul>
+<li>
+January 19, 2022 by Nicolas Carbonare:<br/>
+First implementation.
+</li>
+</ul>
+</html>"),
     Icon(coordinateSystem(extent = {{-400, -300}, {400, 300}})));
 end HDU_Electrical;

@@ -175,12 +175,12 @@ equation
           smooth=Smooth.None)}),
     Documentation(revisions="<html>
 <p><ul>
-<li>June 6, 2013, Dominik Wystrcil:<br/>First implementation</li>
+<li>May 2021, 2021, Nicolas Carbonare:<br/>First implementation. Forked from ISELib.</li>
 </ul></p>
 </html>", info="<html>
 <p><h4><font color=\"#008000\">Raummodell nach ISO 13790</font></h4></p>
 <p>Einfaches Knotenmodell auf Basis des vorgeschlagenen R-C-Netzwerks aus der DIN EN ISO 13790. Es gibt je einen Luft- und Masseknoten mit einer dazugeh&ouml;rigen Kapazit&auml;t. &Uuml;ber Widerst&auml;nde werden die W&auml;rmeverluste (Transmission durch Fenster+W&auml;nde sowie L&uuml;ftungsverluste) an die Umgebung berechnet. </p>
-<p>Die W&auml;rmegewinne durch solare Einstrahlung werden mit einem <a href=\"ISELib.Buildings.BaseClasses.Facades\">Fassadenmodell</a> berechnet. Die internen W&auml;rmegewinne (Personen, elektrische Ger&auml;te, Haustiere) werden durch eine Lasttabelle abgebildet.</p>
+<p>Die W&auml;rmegewinne durch solare Einstrahlung werden mit einem Base Class Fassadenmodel berechnet. Die internen W&auml;rmegewinne (Personen, elektrische Ger&auml;te, Haustiere) werden durch eine Lasttabelle abgebildet.</p>
 <p>F&uuml;r eine ausf&uuml;hrlichere Dokumentation siehe DIN EN ISO 13790.</p>
 <p>Unterschied zur ISO 13790: in der ISO ist keine Kapazit&auml;t des Luftknotens vorgesehen. Das macht aber nur einen geringen Unterschied des thermischen Verhaltens aus.</p>
 </html>"));

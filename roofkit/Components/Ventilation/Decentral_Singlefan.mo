@@ -146,21 +146,12 @@ equation
           smooth=Smooth.None)}),
            Documentation(info="<html>
 <p>
-This model represents a decentralized ventilation system equipped with a single
-fan (exhaust and supply alternating). This allows a single recuperative 
-heat recovery unit, which stores the heat in exhaust phase, and releases it in
-supply phase. Pressure drops because of the filters and geometry of devices 
+This model represents a decentralized ventilation system equipped with a single fan (exhaust and supply alternating). This allows a single recuperative heat recovery unit, which stores the heat in exhaust phase, and releases it in supply phase. Pressure drops because of the filters and geometry of devices 
 are also considered. If necessary, ducts pressure drop must be modelled separately.
 </p>
 <p>
 The Real input <code>Speed_u</code> refers to the 
 control of the ventilation mass flow.
-</p>
-<p>
-The next figure (source: Coydon(2015)) represents a scheme of this model.
-</p>
-<p><img src=\"modelica://Work_NC/Components/Fluid/Ventilation/AHU_Awbi.jpg\"
-alt=\"schema of AHU\"/> 
 </p>
 <h4>References</h4>
 <ul>
