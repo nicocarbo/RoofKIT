@@ -574,5 +574,32 @@ equation
   annotation(
     Diagram(graphics = {Rectangle(origin = {34, 172}, fillColor = {170, 170, 127}, fillPattern = FillPattern.Solid, extent = {{-62, 26}, {62, -26}}), Rectangle(origin = {-99, 88}, fillColor = {170, 213, 255}, fillPattern = FillPattern.Solid, extent = {{95, -56}, {-95, 56}}), Rectangle(origin = {97, 88}, fillColor = {255, 166, 187}, fillPattern = FillPattern.Solid, extent = {{99, -56}, {-99, 56}}), Rectangle(origin = {57, 1}, fillColor = {255, 147, 147}, fillPattern = FillPattern.Solid, extent = {{139, -29}, {-139, 29}}), Rectangle(origin = {-139, -69}, fillColor = {181, 181, 181}, fillPattern = FillPattern.Solid, extent = {{-55, 39}, {55, -39}}), Rectangle(origin = {1, -145}, fillColor = {62, 186, 91}, fillPattern = FillPattern.Solid, extent = {{83, -35}, {-83, 35}}), Rectangle(origin = {140, -69}, fillColor = {204, 142, 255}, fillPattern = FillPattern.Solid, extent = {{-54, 39}, {54, -39}}), Rectangle(origin = {1, -69}, fillColor = {78, 234, 114}, fillPattern = FillPattern.Solid, extent = {{83, -39}, {-83, 39}}), Rectangle(origin = {-139, 1}, fillColor = {207, 207, 207}, fillPattern = FillPattern.Solid, extent = {{-55, 29}, {55, -29}}), Rectangle(origin = {-139, -145}, fillColor = {223, 223, 0}, fillPattern = FillPattern.Solid, extent = {{55, -35}, {-55, 35}}), Rectangle(origin = {-99, 172}, fillColor = {255, 255, 127}, fillPattern = FillPattern.Solid, extent = {{-35, 26}, {35, -26}}), Rectangle(origin = {140, -145}, fillColor = {255, 170, 0}, fillPattern = FillPattern.Solid, extent = {{-54, 35}, {54, -35}})}, coordinateSystem(extent = {{-200, -200}, {200, 200}})),
     experiment(StartTime = 0, StopTime = 31536000, Tolerance = 1e-6, Interval = 3600),
+	Documentation(info = "<html><p>
+This model calculates the whole energy balance of the House Demonstration Unit for a full year, both thermal and electrical. List of assumptions:</p>
+<li>
+Building thermal model from the ISO 13709 (5R1C) from SimRoom simulation. 
+</li>
+<li>
+Electrical energy consumption of appliances was obtained from the BDEW load profiles. 
+</li>
+<li>
+Domestic hot water consumption assumed from DHWcalc. 
+</li>
+<li>
+Self-developed control strategies to maximize the seasonal COP of the heat pump and optimize battery charging strategy. 
+</li>
+<p> A schematic overview of the simnulated model is shown below.</p>
+<p align=\"center\">
+<img alt=\"image\"
+src=\"modelica://RoofKIT/Resources/Images/HDU_Full_model.png\"/>
+</p>
+</html>", revisions = "<html>
+<ul>
+<li>
+February 28, 2022 by Nicolas Carbonare:<br/>
+Joined together thermal and electrical models. Completed documentation and parametrization. Model working.
+</li>
+</ul>
+</html>"),
     Icon(coordinateSystem(extent = {{-200, -200}, {200, 200}})));
 end HDU_Full;

@@ -1,7 +1,5 @@
 within RoofKIT.EnergyConcept_GG.SingleModels.GreyWater;
 
-
-
 model Testing
   Modelica.Blocks.Sources.Constant const(k = 25 + 273.15)  annotation(
     Placement(visible = true, transformation(origin = {-122, 16}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -17,4 +15,14 @@ equation
   connect(const1.y, hX_Flow2Heat.mflow) annotation(
     Line(points = {{-112, -18}, {-72, -18}, {-72, -10}, {-28, -10}}, color = {0, 0, 127}));
 protected
+
+annotation(Documentation(info = "<html><p>
+Test of the model for the greywater heat recovery</html>", revisions = "<html>
+<ul>
+<li>
+January 08, 2022 by Moritz Bühler:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end Testing;

@@ -297,5 +297,21 @@ equation
   annotation(
     Diagram(graphics = {Rectangle(origin = {34, 172}, fillColor = {170, 170, 127}, fillPattern = FillPattern.Solid, extent = {{-62, 26}, {62, -26}}), Rectangle(origin = {1, 83}, fillColor = {170, 213, 255}, fillPattern = FillPattern.Solid, extent = {{195, -61}, {-195, 61}}), Rectangle(origin = {101, -30}, fillColor = {204, 142, 255}, fillPattern = FillPattern.Solid, extent = {{-93, 50}, {93, -50}}), Rectangle(origin = {-101, -117}, fillColor = {223, 223, 0}, fillPattern = FillPattern.Solid, extent = {{77, -35}, {-77, 35}}), Rectangle(origin = {-99, 172}, fillColor = {255, 255, 127}, fillPattern = FillPattern.Solid, extent = {{-35, 26}, {35, -26}}), Rectangle(origin = {-95, -30}, fillColor = {78, 234, 114}, fillPattern = FillPattern.Solid, extent = {{99, -50}, {-99, 50}})}, coordinateSystem(extent = {{-200, -200}, {200, 200}})),
     experiment(StartTime = 14509700, StopTime = 15114500, Tolerance = 1e-6, Interval = 3600),
+	Documentation(info = "<html><p>
+This model calculates the whole electrical energy balance of the House Demonstration Unit during the monitoring period in Wuppertal. Following assumptions were made:</p>
+<li>
+Electrical energy consumption of appliances was obtained from product datasheets and assumed operation profile
+</li>
+<li>
+Domestic hot water consumption was obtained from the house functioning competition. 
+</li>
+</html>", revisions = "<html>
+<ul>
+<li>
+February 22, 2022 by Nicolas Carbonare:<br/>
+First implementation.
+</li>
+</ul>
+</html>"),
     Icon(coordinateSystem(extent = {{-200, -200}, {200, 200}})));
 end HDU_Contest_Electrical;

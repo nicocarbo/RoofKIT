@@ -150,26 +150,13 @@ equation
   connect(gain.u, power_cons) annotation(
     Line(points = {{26, 18}, {0, 18}, {0, -24}, {-156, -24}, {-156, -42}, {-172, -42}, {-172, -60}}, color = {0, 0, 127}));
   annotation (Documentation(info="<html>
-<p>
 Block for a battery controller. The battery is charged if the PV system is generating more power than it is being consumed by the system. It remains charging until it is full or the PV system does not generate more than what is being consumed.
-It discharges provided that it is being consumed and the PV system is not generating power. It remains discharging until it is empty or the PV system begins to generate more power.
+It discharges provided that it is being consumed and the PV system is not generating power. It remains discharging until it is empty or the PV system begins to generate more power. The controller was adapted for an optimized charging behavior during the whole year. 
 </p>
-</html>",
-        revisions="<html>
+</html>", revisions = "<html>
 <ul>
 <li>
-November 17, 2016, by Michael Wetter:<br/>
-Removed output of instance <code>off</code> to avoid
-an overdetermined system of equations during initialization.<br/>
-This is for <a href=\"https://github.com/lbl-srg/modelica-buildings/issues/578\">issue 578</a>.
-</li>
-<li>
-April 6, 2016, by Michael Wetter:<br/>
-Replaced <code>Modelica_StateGraph2</code> with <code>Modelica.StateGraph</code>.
-This is for <a href=\"https://github.com/lbl-srg/modelica-buildings/issues/504\">issue 504</a>.
-</li>
-<li>
-January 11, 2013, by Michael Wetter:<br/>
+January 11, 2022, by Nicolas Carbonare:<br/>
 First implementation.
 </li>
 </ul>

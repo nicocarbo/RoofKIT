@@ -209,24 +209,12 @@ equation
               -90,-72},{-70,-66}},                                                                                                                                                         lineColor = {0, 0, 0}, fillColor = {0, 0, 0},
             fillPattern =                                                                                                   FillPattern.Solid)}),
     Documentation(info="<html><p>
-  Partial model to implement heat generator models with one heat
-  exchanger volume.
-</p>
-<p>
-  Classes that extend this model need to implement the controller which
-  shoud also calculate the heat flow to the heat exchanger volume.
-</p>
-<p>
-  The volume of the heat exchanger as well as the pressure loss
-  coefficient should be set for each heat generator separately.
+Solar thermal collector model based on the ISO 9806 balance equation. This model was adapted from the solar collector model in the AixLib and was simplified. Credits to the AixLib development team. 
 </p>
 <ul>
   <li>
-    <i>December 08, 2016&#160;</i> by Moritz Lauster:<br/>
-    Adapted to AixLib conventions
-  </li>
-  <li>October 11, 2016 by Pooyan Jahangiri:<br/>
-    First implementation.
+    November 08, 2021, by Nicolas Carbonare:<br/>
+	First implementation.
   </li>
 </ul>
 </html>"));
