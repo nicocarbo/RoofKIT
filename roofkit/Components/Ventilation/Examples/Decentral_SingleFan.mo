@@ -1,6 +1,5 @@
 within RoofKIT.Components.Ventilation.Examples;
 model Decentral_SingleFan
-  //import Work_NC;
 
   extends Modelica.Icons.Example;
   package Medium = Buildings.Media.Air(extraPropertiesNames={"CO2"},

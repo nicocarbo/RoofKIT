@@ -1,8 +1,7 @@
 ﻿within RoofKIT.Components.BuildingModel;
 model Zone_ISO13790
   "Model for thermal zone using RC-network for room according to ISO 13790. Calculation of solar heat gains through four facades. Internal heat gains with input"
-  extends Modelica.Blocks.Interfaces.BlockIcon;
-  import Buildings;
+  //extends Modelica.Blocks.Interfaces.BlockIcon;
   import Modelica.Constants;
 
   parameter Real f_WRG = 0.6
@@ -139,40 +138,7 @@ equation
   connect(room_ISO13790_1.Qdot_int, Qdot_int) annotation (Line(points={{12.6,-6},
           {20,-6},{20,-64},{-108,-64}}, color={0,0,127}));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}})),  Icon(graphics={
-        Polygon(
-          points={{-100,40},{0,100},{-100,100},{-100,40}},
-          lineColor={0,0,0},
-          smooth=Smooth.None,
-          fillColor={0,0,0},
-          fillPattern=FillPattern.Solid),
-        Polygon(
-          points={{100,40},{0,100},{100,100},{100,40}},
-          lineColor={0,0,0},
-          smooth=Smooth.None,
-          fillColor={0,0,0},
-          fillPattern=FillPattern.Solid),
-        Ellipse(extent={{-8,30},{8,14}},    lineColor={0,0,0}),
-        Line(
-          points={{0,14},{0,-56}},
-          color={0,0,0},
-          smooth=Smooth.None),
-        Line(
-          points={{0,-10},{18,-4}},
-          color={0,0,0},
-          smooth=Smooth.None),
-        Line(
-          points={{0,-10},{-18,-4}},
-          color={0,0,0},
-          smooth=Smooth.None),
-        Line(
-          points={{0,-56},{-14,-82}},
-          color={0,0,0},
-          smooth=Smooth.None),
-        Line(
-          points={{0,-56},{14,-82}},
-          color={0,0,0},
-          smooth=Smooth.None)}),
+            -100},{100,100}})),  Icon(graphics = {Rectangle(lineColor = {255, 255, 255}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{16, -58}, {44, -30}}), Rectangle(lineColor = {255, 255, 255}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, extent = {{16, -8}, {44, 20}}), Polygon(fillColor = {163, 163, 163}, fillPattern = FillPattern.Solid, points = {{0, 80}, {-78, 34}, {80, 34}, {0, 80}}), Rectangle(origin = {2, 0}, fillColor = {163, 163, 163}, fillPattern = FillPattern.Solid, extent = {{-64, 34}, {64, -74}}), Rectangle(origin = {16, -16}, fillColor = {152, 102, 1}, fillPattern = FillPattern.Solid, extent = {{-24, -54}, {-8, -28}}), Rectangle(fillColor = {170, 255, 255}, fillPattern = FillPattern.Solid, extent = {{-42, -8}, {-14, 20}}), Rectangle(fillColor = {170, 255, 255}, fillPattern = FillPattern.Solid, extent = {{16, -8}, {44, 20}}), Line(origin = {-27, 6}, points = {{-1, 14}, {-1, -14}, {-1, -14}, {1, -14}}), Line(origin = {31, 6}, points = {{-1, 14}, {-1, -14}, {-1, -14}, {1, -14}}), Line(origin = {31, 6}, points = {{-1, 14}, {-1, -14}, {-1, -14}, {1, -14}}), Line(origin = {29.8536, 4.79289}, points = {{-13.8536, 1.20711}, {14.1464, 1.20711}, {14.1464, -0.792893}}), Line(origin = {-28.1464, 4.79289}, points = {{-13.8536, 1.20711}, {14.1464, 1.20711}, {14.1464, -0.792893}}), Line(origin = {-28.1464, 4.79289}, points = {{-13.8536, 1.20711}, {14.1464, 1.20711}, {14.1464, 1.20711}})}),
     Documentation(revisions="<html>
 <p><ul>
 <li>May 2021, 2021, Nicolas Carbonare:<br/>First implementation. Forked from ISELib.</li>

@@ -1,6 +1,8 @@
 within RoofKIT.EnergyConcept_GG.WholeConcept.FinalModels;
 
 model GG_Full
+  extends Modelica.Icons.Example;
+
   Real heatflow = -HX_U.y * HX_A.y * ((WW_T_in.y - ((WW_T_in.y - WW_tank.T) * 2.71828 * exp(HX_U.y / (WW_mflow.y * 4200)) + WW_tank.T)) / 2 - WW_tank.T);
   Real p_DHW = (FirstFloor.y[3] + SecondFloor.y[3] + ThirdFloor.y[3]) / 3600 * 4200 * (45 - 10);
   Real WW_Ausnutzung = heatflow / p_DHW;

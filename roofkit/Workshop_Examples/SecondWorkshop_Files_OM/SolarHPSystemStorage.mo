@@ -5,15 +5,13 @@ model SolarHPSystemStorage "Example for a heat pump system with a solar collecto
 
   package Medium_sin = Buildings.Media.Water;
   package Medium_sou = Buildings.Media.Water;
-  Buildings.Fluid.HeatExchangers.Radiators.RadiatorEN442_2 rad(energyDynamics = Modelica.Fluid.Types.Dynamics.FixedInitial, T_a_nominal(displayUnit = "degC") = 323.15, dp_nominal = 0, m_flow_nominal = 20000 / 4180 / 5, Q_flow_nominal = 20000, redeclare
-      package Medium =                                                                                                                                                                                                         Medium_sin, T_start = 313.15, T_b_nominal = 318.15, TAir_nominal = 293.15, TRad_nominal = 293.15) "Radiator" annotation (
+  Buildings.Fluid.HeatExchangers.Radiators.RadiatorEN442_2 rad(energyDynamics = Modelica.Fluid.Types.Dynamics.FixedInitial, T_a_nominal(displayUnit = "degC") = 323.15, dp_nominal = 0, m_flow_nominal = 20000 / 4180 / 5, Q_flow_nominal = 20000, redeclare package Medium =                                                                                                                                                                                                         Medium_sin, T_start = 313.15, T_b_nominal = 318.15, TAir_nominal = 293.15, TRad_nominal = 293.15) "Radiator" annotation (
     Placement(transformation(extent = {{-150, 120}, {-170, 100}})));
   Buildings.Fluid.Sources.Boundary_pT preSou(redeclare package Medium = Medium_sin, T = 313.15, nPorts=1)   "Source for pressure and to account for thermal expansion of water" annotation (
     Placement(transformation(extent = {{-100, 128}, {-80, 148}})));
   Buildings.BoundaryConditions.WeatherData.Bus weaBus "Weather data bus" annotation (
     Placement(transformation(extent = {{148, 50}, {168, 70}}), iconTransformation(extent = {{148, 50}, {168, 70}})));
-  Buildings.Fluid.Sensors.TemperatureTwoPort senT_a1(redeclare final package
-      Medium =                                                                        Medium_sin, final m_flow_nominal = 1, final transferHeat = true, final allowFlowReversal = true) "Temperature at sink inlet" annotation (
+  Buildings.Fluid.Sensors.TemperatureTwoPort senT_a1(redeclare final package Medium =                                                                        Medium_sin, final m_flow_nominal = 1, final transferHeat = true, final allowFlowReversal = true) "Temperature at sink inlet" annotation (
     Placement(transformation(extent = {{10, 10}, {-10, -10}}, origin = {-132, 110})));
   Components.BuildingModel.Zone_ISO13790 Gebaeude_modell(f_WRG = 0.5, U_win = 1.3, U_opaque = 0.2, A_win = {30.54, 31.54, 39.46, 31.46}, A_opaque = 963, A_f = 640, V_room = 2176, win_frame = {0.2, 0.2, 0.2, 0.2}, surfaceAzimut = {pi, -pi / 2, 0, pi / 2}, Hysterese_Irradiance = 50, C_mass = 165000 * 640, latitude = 0.015882496193148) annotation (
     Placement(transformation(extent = {{106, 114}, {126, 134}})));
@@ -31,7 +29,7 @@ model SolarHPSystemStorage "Example for a heat pump system with a solar collecto
   Components.Solar.Thermal.ThermalCollector thermalCollector(redeclare package Medium =                                                                    Medium_sou,
     A_coll=60,                                                                                                   T_start(displayUnit = "K") = 273.15 + 20,
     dp_nominal(displayUnit="Pa") = 50, m_flow_nominal = 1,
-    volSol=1.5)                                                           annotation (
+    volSol=1.5) annotation (
     Placement(transformation(extent = {{48, -114}, {28, -94}})));
   Buildings.Fluid.FixedResistances.PressureDrop pipeSC(
     redeclare package Medium = Medium_sou,
@@ -44,19 +42,16 @@ model SolarHPSystemStorage "Example for a heat pump system with a solar collecto
     Placement(transformation(extent = {{114, -114}, {94, -94}})));
   Modelica.Blocks.Sources.Constant mflow_pump(k = 1.5) annotation (
     Placement(transformation(extent = {{134, -84}, {114, -64}})));
-  Buildings.Fluid.Sensors.TemperatureTwoPort solTh_Return_T(redeclare package
-      Medium =                                                                         Medium_sou, m_flow_nominal = 1.5) annotation (
+  Buildings.Fluid.Sensors.TemperatureTwoPort solTh_Return_T(redeclare package Medium = Medium_sou, m_flow_nominal = 1.5) annotation (
     Placement(transformation(extent = {{-92, 136}, {-112, 116}}, rotation = 270, origin = {-128, -218})));
-  Buildings.Fluid.Actuators.Valves.ThreeWayEqualPercentageLinear val1(redeclare
-      package Medium =                                                                           Medium_sin, riseTime = 30, m_flow_nominal = 1.5, dpValve_nominal = 100, dpFixed_nominal = {10, 10}) annotation (
+  Buildings.Fluid.Actuators.Valves.ThreeWayEqualPercentageLinear val1(redeclare package Medium =                                                                           Medium_sin, riseTime = 30, m_flow_nominal = 1.5, dpValve_nominal = 100, dpFixed_nominal = {10, 10}) annotation (
     Placement(transformation(extent = {{150, -114}, {130, -94}})));
   Modelica.Blocks.Math.BooleanToReal booleanToReal annotation (
     Placement(transformation(extent = {{-28, -160}, {-8, -140}})));
   Buildings.Fluid.Sources.Boundary_pT sink_water(T(displayUnit = "K") = 273.15 + 10, redeclare
       package Medium =                                                                                       Medium_sou, nPorts = 1) annotation (
     Placement(transformation(extent = {{184, -144}, {164, -124}})));
-  Buildings.Fluid.Actuators.Valves.ThreeWayEqualPercentageLinear val2(redeclare
-      package Medium =                                                                           Medium_sin, riseTime = 30, m_flow_nominal = 1.5, dpValve_nominal = 100, dpFixed_nominal = {10, 10}) annotation (
+  Buildings.Fluid.Actuators.Valves.ThreeWayEqualPercentageLinear val2(redeclare package Medium =                                                                           Medium_sin, riseTime = 30, m_flow_nominal = 1.5, dpValve_nominal = 100, dpFixed_nominal = {10, 10}) annotation (
     Placement(transformation(extent = {{150, -124}, {130, -144}})));
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature storageRoomTemp(T = 288.15) annotation (
     Placement(transformation(extent = {{-172, -14}, {-152, 6}})));
@@ -70,7 +65,7 @@ model SolarHPSystemStorage "Example for a heat pump system with a solar collecto
   Buildings.Fluid.Sources.Boundary_pT preSou1(redeclare package Medium = Medium_sin, T = 313.15, nPorts = 1) "Source for pressure and to account for thermal expansion of water" annotation (
     Placement(transformation(extent = {{100, 36}, {80, 56}})));
   Buildings.Fluid.Movers.FlowControlled_m_flow fan2(
-    redeclare package Medium = Medium_sin,                                                 m_flow_nominal = 1.5, addPowerToMedium = false, dp_nominal = 100) annotation (
+    redeclare package Medium = Medium_sin, m_flow_nominal = 1.5, addPowerToMedium = false, dp_nominal = 100) annotation (
     Placement(transformation(extent = {{64, 36}, {44, 56}})));
   Modelica.Blocks.Sources.Constant mflow_pump1(k = 1.2) annotation (
     Placement(transformation(extent={{-8,46},{12,66}})));
@@ -102,7 +97,7 @@ model SolarHPSystemStorage "Example for a heat pump system with a solar collecto
     per=perHP) "Water to Water heat pump"
     annotation (Placement(transformation(extent={{24,-32},{76,18}})));
   parameter
-    RoofKIT.SS21.Database.HeatPump.HeatPump_RoofKIT perHP
+    RoofKIT.Database.HeatPump.HeatPump_RoofKIT_WW perHP
     "Reverse heat pump performance data"
     annotation (Placement(transformation(extent={{160,32},{180,52}})));
   Modelica.Blocks.Sources.IntegerConstant integerMode(k=1)   annotation (

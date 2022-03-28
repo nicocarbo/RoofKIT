@@ -3,7 +3,7 @@ model Zone_ISO13790
   import Modelica.Constants.*;
   extends Modelica.Icons.Example;
 
-  RoofKIT.SS21.Components.BuildingModel.Zone_ISO13790 Gebaeude_modell( A_f = 640, A_opaque = 963, A_win = {30.54, 31.54, 39.46, 31.46}, C_mass = 165000 * 640, Hysterese_Irradiance = 50, U_opaque = 0.2, U_win = 1.3, V_room = 2176,f_WRG = 0.5, latitude( displayUnit = "rad") = 0.015882496193148, surfaceAzimut = {pi, -pi / 2, 0, pi / 2}, win_frame = {0.2, 0.2, 0.2, 0.2}) annotation (
+  RoofKIT.Components.BuildingModel.Zone_ISO13790 Gebaeude_modell( A_f = 640, A_opaque = 963, A_win = {30.54, 31.54, 39.46, 31.46}, C_mass = 165000 * 640, Hysterese_Irradiance = 50, U_opaque = 0.2, U_win = 1.3, V_room = 2176,f_WRG = 0.5, latitude( displayUnit = "rad") = 0.015882496193148, surfaceAzimut = {pi, -pi / 2, 0, pi / 2}, win_frame = {0.2, 0.2, 0.2, 0.2}) annotation (
     Placement(transformation(extent = {{60, -28}, {80, -8}})));
   Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow annotation (
     Placement(transformation(extent = {{20, -20}, {40, 0}})));
