@@ -459,7 +459,7 @@ This model calculates the whole thermal energy balance of the House Demonstratio
 Building thermal model from the ISO 13709 (5R1C) from SimRoom simulation. 
 </li>
 <li>
-Domestic hot water consumption assumed from DHWcalc. 
+Domestic hot water consumption profile assumed from DHWcalc. 
 </li>
 <li>
 Self-developed control strategies to maximize the seasonal COP of the heat pump. 

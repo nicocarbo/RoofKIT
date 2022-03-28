@@ -9,7 +9,7 @@ model ThermalCollector "Model for a solar thermal collector"
   parameter Modelica.SIunits.Volume volSol=0.05 "Water volume of piping"
     annotation(Dialog(group = "Construction"));
 
-  //=========HEAT GAIN PARAMETERS====================================
+//=========HEAT GAIN PARAMETERS====================================
   parameter Real B0 = 0.05 "1st incident angle modifer coefficient"
                                                                    annotation(Dialog(group = "Efficiency"), choicesAllMatching = true);
   parameter Real iamDiff = 0.95 "Incidence angle modifier for diffuse radiation"
@@ -167,47 +167,7 @@ equation
           {34.4,40},{-14,40},{-14,-30},{-70,-30},{-70,-69}}, color={0,0,127}));
   annotation (
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-            100}}), graphics={Rectangle(
-          extent={{-60,80},{60,-80}},
-          lineColor={0,0,0},
-          fillPattern=FillPattern.VerticalCylinder,
-          fillColor={170,170,255}),                                                                              Rectangle(extent={{
-              -84,80},{84,-80}},                                                                                                                            lineColor = {255, 128, 0},
-            fillPattern =                                                                                                   FillPattern.Solid, fillColor = {255, 128, 0}), Rectangle(extent={{
-              -76,70},{-70,-72}},                                                                                                                                                                                      lineColor = {0, 0, 0}, fillColor = {0, 0, 0},
-            fillPattern =                                                                                                   FillPattern.Solid), Rectangle(extent={{
-              -76,70},{-46,64}},                                                                                                                                                           lineColor = {0, 0, 0}, fillColor = {0, 0, 0},
-            fillPattern =                                                                                                   FillPattern.Solid), Rectangle(extent={{
-              -46,70},{-52,-72}},                                                                                                                                                           lineColor = {0, 0, 0}, fillColor = {0, 0, 0},
-            fillPattern =                                                                                                   FillPattern.Solid), Rectangle(extent={{
-              -50,-72},{-28,-66}},                                                                                                                                                           lineColor = {0, 0, 0}, fillColor = {0, 0, 0},
-            fillPattern =                                                                                                   FillPattern.Solid), Rectangle(extent={{
-              -10,-72},{16,-66}},                                                                                                                                                          lineColor = {0, 0, 0}, fillColor = {0, 0, 0},
-            fillPattern =                                                                                                   FillPattern.Solid), Rectangle(extent={{
-              -4,70},{-10,-72}},                                                                                                                                                         lineColor = {0, 0, 0}, fillColor = {0, 0, 0},
-            fillPattern =                                                                                                   FillPattern.Solid), Rectangle(extent={{
-              -30,70},{-4,64}},                                                                                                                                                          lineColor = {0, 0, 0}, fillColor = {0, 0, 0},
-            fillPattern =                                                                                                   FillPattern.Solid), Rectangle(extent={{
-              -30,70},{-24,-72}},                                                                                                                                                           lineColor = {0, 0, 0}, fillColor = {0, 0, 0},
-            fillPattern =                                                                                                   FillPattern.Solid), Rectangle(extent={{
-              34,-72},{56,-66}},                                                                                                                                                           lineColor = {0, 0, 0}, fillColor = {0, 0, 0},
-            fillPattern =                                                                                                   FillPattern.Solid), Rectangle(extent={{
-              38,70},{32,-72}},                                                                                                                                                           lineColor = {0, 0, 0}, fillColor = {0, 0, 0},
-            fillPattern =                                                                                                   FillPattern.Solid), Rectangle(extent={{
-              12,70},{38,64}},                                                                                                                                                           lineColor = {0, 0, 0}, fillColor = {0, 0, 0},
-            fillPattern =                                                                                                   FillPattern.Solid), Rectangle(extent={{
-              12,70},{18,-72}},                                                                                                                                                           lineColor = {0, 0, 0}, fillColor = {0, 0, 0},
-            fillPattern =                                                                                                   FillPattern.Solid), Rectangle(extent={{
-              70,-72},{90,-66}},                                                                                                                                                           lineColor = {0, 0, 0}, fillColor = {0, 0, 0},
-            fillPattern =                                                                                                   FillPattern.Solid), Rectangle(extent={{
-              76,70},{70,-72}},                                                                                                                                                           lineColor = {0, 0, 0}, fillColor = {0, 0, 0},
-            fillPattern =                                                                                                   FillPattern.Solid), Rectangle(extent={{
-              50,70},{76,64}},                                                                                                                                                           lineColor = {0, 0, 0}, fillColor = {0, 0, 0},
-            fillPattern =                                                                                                   FillPattern.Solid), Rectangle(extent={{
-              50,70},{56,-72}},                                                                                                                                                           lineColor = {0, 0, 0}, fillColor = {0, 0, 0},
-            fillPattern =                                                                                                   FillPattern.Solid), Rectangle(extent={{
-              -90,-72},{-70,-66}},                                                                                                                                                         lineColor = {0, 0, 0}, fillColor = {0, 0, 0},
-            fillPattern =                                                                                                   FillPattern.Solid)}),
+            100}}), graphics={Rectangle(fillColor = {170, 170, 255}, fillPattern = FillPattern.VerticalCylinder, extent = {{-60, 80}, {60, -80}}),                                                                              Rectangle(lineColor = {170, 0, 0}, fillColor = {170, 0, 0}, fillPattern = FillPattern.Solid, extent = {{-84, 80}, {84, -80}}), Rectangle(fillPattern = FillPattern.Solid, extent = {{-76, 70}, {-70, -72}}), Rectangle(fillPattern = FillPattern.Solid, extent = {{-76, 70}, {-46, 64}}), Rectangle(fillPattern = FillPattern.Solid, extent = {{-46, 70}, {-52, -72}}), Rectangle(fillPattern = FillPattern.Solid, extent = {{-50, -72}, {-28, -66}}), Rectangle(fillPattern = FillPattern.Solid, extent = {{-10, -72}, {16, -66}}), Rectangle(fillPattern = FillPattern.Solid, extent = {{-4, 70}, {-10, -72}}), Rectangle(fillPattern = FillPattern.Solid, extent = {{-30, 70}, {-4, 64}}), Rectangle(fillPattern = FillPattern.Solid, extent = {{-30, 70}, {-24, -72}}), Rectangle(fillPattern = FillPattern.Solid, extent = {{34, -72}, {56, -66}}), Rectangle(fillPattern = FillPattern.Solid, extent = {{38, 70}, {32, -72}}), Rectangle(fillPattern = FillPattern.Solid, extent = {{12, 70}, {38, 64}}), Rectangle(fillPattern = FillPattern.Solid, extent = {{12, 70}, {18, -72}}), Rectangle(fillPattern = FillPattern.Solid, extent = {{70, -72}, {90, -66}}), Rectangle(fillPattern = FillPattern.Solid, extent = {{76, 70}, {70, -72}}), Rectangle(fillPattern = FillPattern.Solid, extent = {{50, 70}, {76, 64}}), Rectangle(fillPattern = FillPattern.Solid, extent = {{50, 70}, {56, -72}}), Rectangle(fillPattern = FillPattern.Solid, extent = {{-90, -72}, {-70, -66}})}),
     Documentation(info="<html><p>
 Solar thermal collector model based on the ISO 9806 balance equation. This model was adapted from the solar collector model in the AixLib and was simplified. Credits to the AixLib development team. 
 </p>

@@ -51,8 +51,7 @@ model SolarHeatPumpSystem
   Buildings.Fluid.Sensors.TemperatureTwoPort solTh_Inlet_T(redeclare package
       Medium = Medium_sou, m_flow_nominal=1) annotation (
     Placement(transformation(extent={{38,-116},{18,-96}})));
-  RoofKIT.SS21.Components.Solar.Thermal.ThermalCollector
-                                          thermalCollector(
+  RoofKIT.Components.Solar.Thermal.ThermalCollector thermalCollector(
     redeclare package Medium = Medium_sou,
     A_coll=60,
     T_start(displayUnit="K") = 273.15 + 20,
