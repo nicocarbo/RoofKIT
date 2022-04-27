@@ -4,6 +4,10 @@ model HDU_Thermal
   // 3.1536e+07 stop time
   import Modelica.Constants.*;
   extends Modelica.Icons.Example;
+  package Medium_loa = Buildings.Media.Water;
+  package Medium_sou = Buildings.Media.Antifreeze.PropyleneGlycolWater(X_a = 0.35, property_T = 283.15);
+  package Medium_heat = Buildings.Media.Water;
+  
   parameter Modelica.SIunits.MassFlowRate mSou_flow_nominal = 800 / 3600 "Source heat exchanger nominal mass flow rate";
   parameter Modelica.SIunits.MassFlowRate mLoa_flow_nominal = 400 / 3600 "Load heat exchanger nominal mass flow rate";
   parameter Modelica.SIunits.MassFlowRate mSolCol_flow_nominal = 12 * 60 / 3600 "Solar collector nominal mass flow rate";

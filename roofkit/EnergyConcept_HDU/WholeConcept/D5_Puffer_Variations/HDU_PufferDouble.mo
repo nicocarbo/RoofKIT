@@ -3,7 +3,7 @@ within RoofKIT.EnergyConcept_HDU.WholeConcept.D5_Puffer_Variations;
 model HDU_PufferDouble
   import Modelica.Constants.*;
   extends Modelica.Icons.Example;
-    package Medium_loa = Buildings.Media.Water;
+  package Medium_loa = Buildings.Media.Water;
   package Medium_sou = Buildings.Media.Antifreeze.PropyleneGlycolWater(X_a = 0.35, property_T = 283.15);
   package Medium_heat = Buildings.Media.Water;
   parameter Modelica.SIunits.MassFlowRate mSou_flow_nominal = 0.35 "Source heat exchanger nominal mass flow rate";
