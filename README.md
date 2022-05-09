@@ -13,6 +13,8 @@ This package requires the following libraries;
 
 Team RoofKIT wants to thank the developers of these libraries for facilitating models of different systems. The models were developed with educational purposes, for the decathletes to introduce themselves to advanced building simulation. The library has self-developed components, a database, and the models for the Design Challenge (GG) and House Demonstration Unit (HDU).
 
+eine änderung
+
 For a quick overview of the simulation results, please refer to the evaluation [file](https://github.com/nicocarbo/RoofKIT/blob/main/roofkit/Resources/EvaluationResults/Results_D6.ipynb)
 
 For more information visit our website: http://roofkit.de/en/
