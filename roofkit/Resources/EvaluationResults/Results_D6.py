@@ -28,7 +28,6 @@ from buildingspy.io.outputfile import Reader
 
 # set working directory and results file path
 #path_dir = 'roofkit/Resources/EvaluationResults/'
-path_dir = 'C:/Users/vp3411/Documents/Programme/Modelica/RoofKIT/roofkit/Resources/EvaluationResults/'
 os.chdir(path_dir)
 path_res = (path_dir+'HDU_D6.mat')
 r=Reader(path_res, "dymola")
@@ -545,7 +544,7 @@ print(gg_grid_fed.resample('M').mean())
 ####################
 
 # Load individual floor data
-path_gg_raw = ('C:/Users/vp3411/Documents/Programme/Modelica/RoofKIT/roofkit/Resources/BuildingData/GG/*.txt')
+path_gg_raw = ('/roofkit/Resources/BuildingData/GG/*.txt')
 pathlist_gg_raw = gb.glob(path_gg_raw)
 
 data_gg_raw = {}
